@@ -1,32 +1,55 @@
-# Example Geb and Gradle Project
+> Task :tasks
 
-[![Build Status][build_status]](https://snap-ci.com/geb/geb-example-gradle/branch/master)
+------------------------------------------------------------
+All tasks runnable from root project
+------------------------------------------------------------
 
-## Description
+Build tasks
+-----------
+assemble - Assembles the outputs of this project.
+build - Assembles and tests this project.
+buildDependents - Assembles and tests this project and all projects that depend on it.
+buildNeeded - Assembles and tests this project and all projects it depends on.
+classes - Assembles main classes.
+clean - Deletes the build directory.
+jar - Assembles a jar archive containing the main classes.
+testClasses - Assembles test classes.
 
-This is an example of incorporating Geb into a Gradle build. It shows the use of Spock and JUnit 4 tests.
+Build Setup tasks
+-----------------
+init - Initializes a new Gradle build.
+wrapper - Generates Gradle wrapper files.
 
-The build is setup to work with Firefox, Chrome and PhantomJS. Have a look at the `build.gradle` and the `src/test/resources/GebConfig.groovy` files.
+Documentation tasks
+-------------------
+javadoc - Generates Javadoc API documentation for the main source code.
 
-## Usage
+Help tasks
+----------
+buildEnvironment - Displays all buildscript dependencies declared in root project 'mntlab-pipeline'.
+components - Displays the components produced by root project 'mntlab-pipeline'. [incubating]
+dependencies - Displays all dependencies declared in root project 'mntlab-pipeline'.
+dependencyInsight - Displays the insight into a specific dependency in root project 'mntlab-pipeline'.
+dependentComponents - Displays the dependent components of components in root project 'mntlab-pipeline'. [incubating]
+help - Displays a help message.
+model - Displays the configuration model of root project 'mntlab-pipeline'. [incubating]
+projects - Displays the sub-projects of root project 'mntlab-pipeline'.
+properties - Displays the properties of root project 'mntlab-pipeline'.
+tasks - Displays the tasks runnable from root project 'mntlab-pipeline'.
 
-The following commands will launch the tests with the individual browsers:
+Verification tasks
+------------------
+check - Runs all checks.
+jacocoTestCoverageVerification - Verifies code coverage metrics based on specified rules for the test task.
+jacocoTestReport - Generates code coverage report for the test task.
+test - Runs the unit tests.
 
-    ./gradlew chromeTest
-    ./gradlew firefoxTest
-    ./gradlew phantomJsTest
+Rules
+-----
+Pattern: clean<TaskName>: Cleans the output files of a task.
+Pattern: build<ConfigurationName>: Assembles the artifacts of a configuration.
+Pattern: upload<ConfigurationName>: Assembles and uploads the artifacts belonging to a configuration.
 
-To run with all, you can run:
+To see all tasks and more detail, run gradle tasks --all
 
-    ./gradlew test
-
-Replace `./gradlew` with `gradlew.bat` in the above examples if you're on Windows.
-
-## Questions and issues
-
-Please ask questions on [Geb user mailing list][mailing_list] and raise issues in [Geb issue tracker][issue_tracker].
-
-
-[build_status]: https://snap-ci.com/geb/geb-example-gradle/branch/master/build_image "Build Status"
-[mailing_list]: https://groups.google.com/forum/#!forum/geb-user
-[issue_tracker]: https://github.com/geb/issues/issues
+To see more detail about a task, run gradle help --task <task>
