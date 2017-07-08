@@ -40,7 +40,7 @@ Help tasks
 Verification tasks
 ------------------
 *check* - Runs all checks.</br>
-*jacocoTestCoverageVerification* - Verifies code coverage metrics based on specified rules for the test task.</br>
+*cucumber* - Runs cucumber tests.</br>
 *jacocoTestReport* - Generates code coverage report for the test task.</br>
 *test* - Runs the unit tests.</br>
 
