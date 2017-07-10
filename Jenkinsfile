@@ -6,7 +6,7 @@ git branch: 'akarzhou', url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
 	}	
 
 stage ('Building code') {
-sh "gradle build"
+sh "/gradle/bin/gradle build"
 }
 
 stage ('Testing code'){
@@ -14,19 +14,19 @@ stage ('Testing code'){
         Branch1: {
           stage ('Cucumber')
 		{
-			sh "/opt/gradle-4.0.1/bin/gradle cucumber"
+			sh "/gradle/bin/gradle cucumber"
 		}
         },
         Branch2: {
           stage ('test')
 		{
-			sh "/opt/gradle-4.0.1/bin/gradle test"
+			sh "/gradle/bin/gradle test"
 		}
         },
         Branch3: {
           stage ('jacocoTestReport')
 		{
-			sh "/opt/gradle-4.0.1/bin/gradle jacocoTestReport"
+			sh "/gradle/bin/gradle jacocoTestReport"
 		}
         }
       )
