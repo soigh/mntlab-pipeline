@@ -5,6 +5,6 @@ node {
     }
     stage('Build') {
     // Building code
-    sh "gradle build"
+    sh "/opt/gradle-4.0.1/bingradle build"
     }
 }
