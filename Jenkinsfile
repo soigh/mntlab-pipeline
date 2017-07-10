@@ -10,10 +10,10 @@ node {
 
 
     stage ('Testing code'){
-      parallel {
-        stage ('Cucumber'){sh "/opt/gradle-4.0.1/bin/gradle cucumber"}
-        stage ('jococoTestReport'){sh "/opt/gradle-4.0.1/bin/gradle jococoTestReport"}
-        stage ('test'){sh "/opt/gradle-4.0.1/bin/gradle test"}
-      }
+      parallel (
+        Branch1: {stage ('Cucumber'){sh "/opt/gradle-4.0.1/bin/gradle cucumber"}}
+        Branch2: {stage ('jococoTestReport'){sh "/opt/gradle-4.0.1/bin/gradle jococoTestReport"}}
+        Branch3: {stage ('test'){sh "/opt/gradle-4.0.1/bin/gradle test"}}
+      )
     }
-}    
+}
