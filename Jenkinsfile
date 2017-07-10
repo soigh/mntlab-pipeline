@@ -17,6 +17,6 @@ node('EPBYMINW2695') {
     }
 
     stage('Trigger') {
-        build job: "MNTLAB-adoropei-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: 'adoropei')]
+        build job: "MNTLAB-adoropei-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: 'adoropei')], wait: true
     }
 }
