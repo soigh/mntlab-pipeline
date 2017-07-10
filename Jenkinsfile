@@ -11,8 +11,8 @@ node (env.SLAVE) {
  stage('Testing') {
 
     parallel (
-     'firstTest': { sh "gradle cucumber" }
-     'secondTest' : { sh "gradle jacocoTestReport" }
+     'firstTest': { sh "gradle cucumber" },
+     'secondTest' : { sh "gradle jacocoTestReport" },
      'thirdTest' : {  sh "gradle test" }
       )
  }
