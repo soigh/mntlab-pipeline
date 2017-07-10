@@ -45,11 +45,11 @@ if ("$TASK" == "pull") {
         }
 }else {
     println "task is $TASK"
-	        def upload = new HTTPBuilder("${baseURL}/repository/${REPOSITORYID}/${GROUPID}/${ARTIFACTID}/${VERSIONID}/${ARTIFACTID}_${BUILD_NUMBER}-${VERSIONID}.tar.gz")
+	        def upload = new HTTPBuilder("${baseURL}/repository/${REPOSITORYID}/${GROUPID}/${ARTIFACTID}/${VERSIONID}/${ARTIFACTID}-${BUILD_NUMBER}.tar.gz")
             upload.setHeaders(Accept: '*/*')
             upload.request(PUT) { post ->
             requestContentType = BINARY
-            body = new File("${ARTIFACTID}_${BUILD_NUMBER}.tar.gz").bytes
+            body = new File("${ARTIFACTID}-${BUILD_NUMBER}.tar.gz").bytes
             headers.'Authorization' = basicAuthString
             }
 }
