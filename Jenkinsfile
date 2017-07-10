@@ -22,17 +22,15 @@ node('EPBYMINW2468') {
 		step ([$class: 'CopyArtifact',
 		          projectName: 'MNTLAB-yshchanouski-child1-build-job',
 		          filter: 'yshchanouski_dsl_script.tar.gz']);
-
-/*		stash includes: 'yshchanouski_dsl_script.tar.gz', name: 'tarka'
-		stash includes: 'Jenkinsfile', name: 'jenk'
-		stash includes: '**gradle-simple.jar', name 'grad' }*/
-
 	
 	stage 'Packaging and Publishing results'
 		sh 'tar -xzf yshchanouski_dsl_script.tar.gz jobs.groovy'
 	 	sh 'ls build/libs'
-//		sh 'tar -czf pipeline-yshchanouski-{env.BUILD_NUMBER}.tar.gz jobs.groovy build/libs/gradle-simple.jar Jenkinsfile'
-		archiveArtifacts 'pipeline-yshchanouski-{env.BUILD_NUMBER}.tar.gz'
+		jar.baseName = 'gradle-simple.jar'
+		sh 'ls build/libs'
+
+		sh 'tar -czf pipeline-yshchanouski-{env.BUILD_NUMBER}.tar.gz jobs.groovy build/libs/gradle-simple.jar Jenkinsfile'
+		archiveArtifacts 'pipeline-yshchanouski-${env.BUILD_NUMBER}.tar.gz'
 		
 }
 
