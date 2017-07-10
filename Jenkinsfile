@@ -23,7 +23,8 @@ node ('EPBYMINW2471') {
         echo ('Finished: Testing code')
     }
     stage('Triggering job and fetching artefact after finishing') {
-        build job: 'EPBYMINW2471/MNTLAB-vtarasiuk-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'vtarasiuk')]
+        build job: 'EPBYMINW2471/MNTLAB-vtarasiuk-child1-build-job',
+        parameters: [string(name: 'BRANCH_NAME', value: 'vtarasiuk')]
             echo ('Finished: Triggering job and fetching artefact after finishing')
     }
     stage('Packaging and Publishing results') {
