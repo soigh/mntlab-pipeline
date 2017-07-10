@@ -34,8 +34,8 @@ echo 'value archived'
 
     stage ('Packaging and Publishing results'){
 
-sh 'tar tzf mdemenkova_dsl_script.tar.gz'
-sh 'tar czf jobs.groovy, Jenkinsfile, gradle-simple.jar /target/pipeline mdemenkova-"${BUILD_NUMBER}".tar.gz'
+sh 'tar -xf mdemenkova_dsl_script.tar.gz'
+sh 'tar -czf mdemenkova-"${BUILD_NUMBER}".tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
 nexusArtifactUploader artifacts: [[artifactId: "${BUILD_NUMBER}", classifier: 'tar.gz', file: '/target/pipeline-mdemenkova-"${BUILD_NUMBER}".tar.gz', type: "${BUILD_NUMBER}"]], credentialsId: 'admin', groupId: 'groupid', nexusUrl: '192.168.56.51:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'artifact', version: 'release'
 
 }
