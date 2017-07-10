@@ -38,7 +38,12 @@ node("EPBYMINW2472"){
         archiveArtifacts "pipeline-${student}-${BUILD_NUMBER}.tar.gz"
         sh "groovy nexus_files.groovy -t push -a pipeline-${student} -c ${BUILD_NUMBER} -r project-releases"
         }
+
     stage('Asking for manual approval') {
-      input id: 'Manual approve', message: 'Deploy the artifact?', ok: 'Deploy'    
+        input id: 'Manual approve', message: 'Deploy the artifact?', ok: 'Deploy'
+    }
+
+    stage('Sending status') {
+        echo "AUTOMATED DEPLOYMENT is SUCCESS"
     }
 }
