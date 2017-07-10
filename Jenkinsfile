@@ -43,7 +43,7 @@ stage ('Asking for manual approval'){
 input 'Deploy or Abort?'
 }
 stage ('Deployment'){
-'java -jar ./gradle-simple.jar'
+sh 'java -jar build/libs/gradle-simple.jar'
 }
 stage ('Sending status'){
 echo 'SUCCESS'
