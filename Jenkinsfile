@@ -26,8 +26,8 @@ node('EPBYMINW2468') {
 	stage 'Packaging and Publishing results'
 		sh 'tar -xzf yshchanouski_dsl_script.tar.gz jobs.groovy'
 	 	sh 'ls build/libs'
-		sh 'tar -czf pipeline-yshchanouski-{env.BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile -C build/libs gradle-simple.jar'
-		archiveArtifacts 'pipeline-yshchanouski-${env.BUILD_NUMBER}.tar.gz'
+		sh 'tar -czf pipeline-yshchanouski-"${BUILD_NUMBER}".tar.gz jobs.groovy Jenkinsfile -C build/libs gradle-simple.jar'
+		archiveArtifacts 'pipeline-yshchanouski-"${BUILD_NUMBER}".tar.gz'
 		
 }
 
