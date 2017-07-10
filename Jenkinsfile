@@ -36,7 +36,7 @@ node('EPBYMINW1374') {
     stage('Java execute') {
     	sh "java -jar ./build/libs/mntlab-ci-pipeline.jar"
     }
-    stage('Custom') {
-	sh "tree"
+    stage('End') {
+	echo "Success"
     }
 }
