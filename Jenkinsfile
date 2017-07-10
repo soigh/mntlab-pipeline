@@ -24,11 +24,15 @@ node {
         }
       )
     }
-    stage("Trigger downstream") {
+    stage("Trigger downstream and fetching artifact") {
         build job: "MNTLAB-${student}-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: "${student}")], wait: true
         step ([$class: 'CopyArtifact',
           projectName: "MNTLAB-${student}-child1-build-job",
           filter: '*.tar.gz']);
+    }
+    stage('Packaging and publishing results') {
+        sh "tar -xf *.tar.gz"
+        sh "tar -zcf pipeline-${student}-${BUILD_NUMBER}.tar.gz build/libs/MNT-CD-module11-pipeline.jar jobs.groovy Jenkinsfile"
     }
 
 
