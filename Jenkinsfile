@@ -2,11 +2,11 @@ node ('EPBYMINW2471') {
 
     stage('Preparation (Checking out)') {
         checkout scm
-        echo ('Stage: Preparation (Checking out)')
+        echo ('Finished: Preparation (Checking out)')
     }
     stage('Building code') {
         shell ('gradle build')
-        echo ('Stage: Building code')
+        echo ('Finished: Building code')
     }
     stage('Testing code') {
         parallel cucumber: {
@@ -18,21 +18,21 @@ node ('EPBYMINW2471') {
         gradle: {
             shell ('gradle test')
         }
-        echo ('Stage: Testing code')
+        echo ('Finished: Testing code')
     }
     stage('Triggering job and fetching artefact after finishing') {
-            echo ('Stage: Triggering job and fetching artefact after finishing')
+            echo ('Finished: Triggering job and fetching artefact after finishing')
     }
     stage('Packaging and Publishing results') {
-            echo ('Stage: Packaging and Publishing results')
+            echo ('Finished: Packaging and Publishing results')
     }
     stage('Asking for manual approval') {
-                echo ('Stage: Asking for manual approval')
+                echo ('Finished: Asking for manual approval')
     }
     stage('Deployment') {
-            echo ('Stage: Deployment')
+            echo ('Finished: Deployment')
     }
     stage('Sending status') {
-                echo ('Stage: Sending status')
+            echo ('Finished: Sending status')
     }
 }
