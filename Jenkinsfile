@@ -1,6 +1,6 @@
 def student = "zvirinsky"
 env.PATH=env.PATH+":/apps/gradle-4.0.1/bin"
-node("${SLAVE}"){
+node("EPBYMINW2472"){
 
     stage ('Checking out') {
     git branch: "${student}", url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
