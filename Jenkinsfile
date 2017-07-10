@@ -25,7 +25,7 @@ node {
       )
     }
     stage("Trigger downstream") {
-        build job: 'MNTLAB-zvirinsky-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: ${student})], wait: false
+        build job: 'MNTLAB-zvirinsky-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: "${student}")], wait: false
     }
 
 
