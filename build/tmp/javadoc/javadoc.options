@@ -1,0 +1,6 @@
+-classpath '/home/hentai/Documents/mntlab-pipeline/build/classes/main:/home/hentai/Documents/mntlab-pipeline/build/resources/main:/home/hentai/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/18.0/cce0823396aa693798f8882e64213b1772032b09/guava-18.0.jar'
+-d '/home/hentai/Documents/mntlab-pipeline/build/docs/javadoc'
+-doctitle 'mntlab-pipeline API'
+-quiet 
+-windowtitle 'mntlab-pipeline API'
+'/home/hentai/Documents/mntlab-pipeline/src/main/java/Hello.java'
