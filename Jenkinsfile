@@ -4,17 +4,12 @@ node ('EPBYMINW6405'){
     stage('Build') {
      sh 'make'
     }
-/*
-    stage('Test') {
-         sh 'make check'
-    *///    junit 'reports/**/*.xml'
-    /*}
 
-    stage('Deploy') {
-     sh 'make publish'  
+stage('Builing code') {
+     sh 'gradle build'  
     }
 }
-pipeline {
+/*pipeline {
     agent any
     stages {
         stage('Example') {
@@ -22,18 +17,18 @@ pipeline {
                 echo 'Hello World'
             }
         }
-    } */
-    stage('Testing code') {
-		parallel (
-			stage('Cucumber Tests') {sh 'gradle cucumber' },
-                        stage('Jacoco Tests') {sh 'gradle jacocoTestReport' },
-                        stage('Unit Tests') {sh 'gradle test' }
-		)
-		
-    }
-    post { 
+} */
+
+stage('Testing code') {
+  parallel (
+     stage('Cucumber Tests') {sh 'gradle cucumber' },
+     stage('Jacoco Tests') {sh 'gradle jacocoTestReport'
+     stage('Unit Tests') {sh 'gradle test' }
+  )
+}
+  post { 
         always { 
-            echo 'I will always say Hello again!'
+            echo 'All tests are passed successfully'
         }
     }
 }
