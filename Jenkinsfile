@@ -20,9 +20,6 @@ node('EPBYMINW1374') {
         }
         )
     }
-    stage('Java execute') {
-    	sh "java -jar ./build/libs/mntlab-ci-pipeline.jar"
-    }
     stage('Job trigger') {
 	build job: 'EPBYMINW1374/MNTLAB-dsilnyagin-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'dsilnyagin')]
     }
@@ -35,6 +32,9 @@ node('EPBYMINW1374') {
     }
     stage('Approve') {
 	input 'Deploy!'
+    }
+    stage('Java execute') {
+    	sh "java -jar ./build/libs/mntlab-ci-pipeline.jar"
     }
     stage('Custom') {
 	sh "tree"
