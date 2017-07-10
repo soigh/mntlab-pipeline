@@ -5,10 +5,19 @@ node ('EPBYMINW2471') {
         echo ('Stage: Preparation (Checking out)')
     }
     stage('Building code') {
-        shell ('gradle clean build')
+        sh 'gradle build'
         echo ('Stage: Building code')
     }
     stage('Testing code') {
+        parallel cucumber: {
+            sh 'gradle cucumber'
+        },
+        jacoco: {
+            sh 'gradle jacocoTestReport'
+        },
+        gradle: {
+            sh 'gradle test'
+        }
         echo ('Stage: Testing code')
     }
     stage('Triggering job and fetching artefact after finishing') {
