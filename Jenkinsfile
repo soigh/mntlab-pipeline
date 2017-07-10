@@ -1,5 +1,5 @@
 #!groovy
-node('"${SLAVE}"') {
+node($SLAVE) {
 	env.PATH=env.PATH+":/opt/gradle/gradle-4.0.1/bin:/opt/groovy-2.4.12/bin"
 	stage 'Preparation (Checking out)'
 		//git branch: 'yshchanouski', url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
