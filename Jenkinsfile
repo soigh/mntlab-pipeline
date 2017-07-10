@@ -7,7 +7,7 @@ node("${SLAVE}"){
     }
 
     stage('Building code') {
-    sh "/opt/gradle-4.0.1/bin/gradle build"
+    sh "gradle build"
     }
 
 
