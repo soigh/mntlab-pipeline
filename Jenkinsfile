@@ -2,6 +2,7 @@ node('EPBYMINW1374') {
     stage('check'){
 	git branch: 'dsilnyagin', credentialsId: 'amazurenko4tests-passwd', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
 	fileExists 'build.gradle'
+	sh "mkdir -p ./artifacts/"
     }
     stage('Build project') {
 	sh "./gradle/4.0.1/bin/gradle build"
@@ -26,8 +27,9 @@ node('EPBYMINW1374') {
 	archiveArtifacts artifacts: 'build/', onlyIfSuccessful: true
     }
     stage('Upload') {
-	sh "tar -czvf artifact.tar.gz ./build/"
-	sh "curl -v --user 'admin:admin123' --upload-file artifact.tar.gz http://10.6.102.44/repository/mnt-pipeline/artifact.tar.gz"
+	sh "echo $BUILD_NUMBER"
+	sh "tar -czvf ./artifacts/artifact.tar.gz ./build/"
+	sh "curl -v --user 'admin:admin123' --upload-file ./artifacts/artifact.tar.gz http://10.6.102.44/repository/mnt-pipeline/artifact.tar.gz"
     }
     stage('Custom') {
 	sh "tree"
