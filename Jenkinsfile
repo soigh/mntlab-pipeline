@@ -38,4 +38,7 @@ node('EPBYMINW3092') {
     archiveArtifacts "pipeline-${student}-${BUILD_NUMBER}.tar.gz"
     sh "groovy pullpushArtifacts.groovy -p push -b pipeline-${student} -c ${BUILD_NUMBER}"
   }
+  stage('Asking for manual approval') {
+    input 'Approve that this artifact should be deployed'
+  }
 }
