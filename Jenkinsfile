@@ -19,4 +19,7 @@ node('EPBYMINW1374') {
         }
         )
     }
+    stage('Custom'){
+	sh "tree"
+    }
 }
