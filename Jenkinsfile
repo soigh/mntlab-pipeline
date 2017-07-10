@@ -10,18 +10,10 @@ node {
 
 
     stage ('Testing code'){
-      parallel firstBranch: {
-        stage ('Cucumber'){
-          sh "/opt/gradle-4.0.1/bin/gradle cucumber"
-        }
-      }, secondBranch: {
-        stage ('jococoTestReport'){
-          sh "/opt/gradle-4.0.1/bin/gradle jococoTestReport"
-        }
-      }, thirdBranch: {
-        stage ('test'){
-          sh "/opt/gradle-4.0.1/bin/gradle test"
-        }
+      parallel {
+        stage ('Cucumber'){sh "/opt/gradle-4.0.1/bin/gradle cucumber"}
+        stage ('jococoTestReport'){sh "/opt/gradle-4.0.1/bin/gradle jococoTestReport"}
+        stage ('test'){sh "/opt/gradle-4.0.1/bin/gradle test"}
       }
     }
-}
+}    
