@@ -18,7 +18,7 @@ node {
         stage ('jococoTestReport'){
           sh "/opt/gradle-4.0.1/bin/gradle jococoTestReport"
         }
-      }, secondBranch: {
+      }, thirdBranch: {
         stage ('jococoTestReport'){
           sh "/opt/gradle-4.0.1/bin/gradle test"
         }
