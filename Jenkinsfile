@@ -1,4 +1,4 @@
-node('EPBYMINW3092') {
+node(env.SLAVE) {
   def student = 'akonchyts'
   stage('Preparation (Checking out)') {
     git branch: "${student}", url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
