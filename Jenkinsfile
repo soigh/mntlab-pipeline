@@ -4,7 +4,7 @@ node('EPBYMINW1374') {
 	fileExists 'build.gradle'
     }
     stage('Build project') {
-	sh "./gradle/4.0.1/bin/gradle build"
+	sh "./gradle/4.0.1/bin/gradle clear build"
     }
     stage('Testing'){
 	parallel (
@@ -23,7 +23,7 @@ node('EPBYMINW1374') {
     	sh "java -jar ./build/libs/mntlab-ci-pipeline.jar"
     }
     stage('Archve artifacts'){
-	archiveArtifacts './build/'
+	archiveArtifacts artifacts: 'build/', onlyIfSuccessful: true
     }
     stage('Custom'){
 	sh "tree ./build/"
