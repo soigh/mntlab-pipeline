@@ -1,4 +1,6 @@
 node {
-echo 'Hi'
+stage('Build'){
+sh 'gradle build'
+     }
 }
 
