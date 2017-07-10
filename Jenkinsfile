@@ -29,5 +29,11 @@ node('EPBYMINW2468') {
 		sh 'tar -czf pipeline-yshchanouski-"${BUILD_NUMBER}".tar.gz jobs.groovy Jenkinsfile -C build/libs gradle-simple.jar'
 		archiveArtifacts 'pipeline-yshchanouski-${BUILD_NUMBER}.tar.gz'
 		sh 'groovy pull-push.groovy -p push -a pipeline-yshchanouski-${BUILD_NUMBER}.tar.gz'
+	stage 'Asking for manual approval'
+		input id: 'Answer', message: 'Approve this build?', ok: 'Approve'
+	stage 'Deployment'
+		sh 'java -jar build/libs gradle-simple.jar'
+	stage 'Send status'
+		echo 'SUCCESS'
 }
 
