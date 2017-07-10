@@ -6,13 +6,13 @@ node('EPBYMINW1374') {
     stage('step1'){
 	parallel (
         Branch1: {
-            stage ('Cucumber'){sh "./gradle/bin/gradle cucumber"}
+            stage ('Cucumber'){sh "./gradle/4.0.1/bin/gradle cucumber"}
         },
         Branch2: {
-            stage ('jacocoTestReport'){sh "./gradle/bin/gradle jacocoTestReport"}
+            stage ('jacocoTestReport'){sh "./gradle/4.0.1/bin/gradle jacocoTestReport"}
         },
         Branch3: {
-            stage ('test'){sh "./gradle/bin/gradle test"}
+            stage ('test'){sh "./gradle/4.0.1/bin/gradle test"}
         }
         )
     }
