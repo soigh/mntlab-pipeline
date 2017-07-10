@@ -8,21 +8,9 @@ node(env.SLAVE) {
   }
   stage('Testing code') {
     parallel (
-      phase1: {
-        stage('Unit Tests') {
-          sh "gradle cucumber; echo phase1"
-        }
-      },
-      phase2: {
-        stage('Jacoco Tests') {
-          sh "gradle jacocoTestReport; echo phase2"
-        }
-      },
-      phase3: {
-        stage('Cucumber Tests') {
-          sh "gradle test; echo phase3"
-        }
-      }
+      phase1: { sh "gradle cucumber; echo 'Cucumber Tests'" },
+      phase2: { sh "gradle jacocoTestReport; echo 'Jacoco Tests'" },
+      phase3: { sh "gradle test; echo 'Unit Tests'" }
     )
   }
   stage('Triggering job and fetching artifact') {
