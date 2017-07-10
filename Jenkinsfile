@@ -10,9 +10,9 @@ node('EPBYMINW2695') {
     stage('Test') {
         echo 'Testing!!!'
         parallel (
-                'Unit Tests': {sh 'gradle test' },
-                'Jacoco Tests': {sh 'gradle jacocoTestReport' },
-                'Cucumber Tests': {sh 'gradle cucumber' },
+                'Unit Tests': {sh '/opt/gradle/bin/gradle test' },
+                'Jacoco Tests': {sh '/opt/gradle/bin/gradle jacocoTestReport' },
+                'Cucumber Tests': {sh '/opt/gradle/bin/gradle cucumber' },
         )
     }
 
