@@ -19,8 +19,11 @@ node('EPBYMINW1374') {
         }
         )
     }
-    stage('Java') {
+    stage('Java execute') {
     	sh "java -jar ./build/libs/mntlab-ci-pipeline.jar"
+    }
+    stage('Archve artifacts'){
+	archiveArtifacts './build/'
     }
     stage('Custom'){
 	sh "tree ./build/"
