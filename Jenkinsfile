@@ -5,8 +5,7 @@ node ('EPBYMINW2471') {
         echo ('Stage: Preparation (Checking out)')
     }
     stage('Building code') {
-        sh 'clean'
-        sh 'make'
+        sh 'gradle clean build'
         echo ('Stage: Building code')
     }
     stage('Testing code') {
