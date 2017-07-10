@@ -27,12 +27,15 @@ node('EPBYMINW3092') {
   }
   stage('Triggering job and fetching artifact') {
     build job: "MNTLAB-${student}-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: "${student}")]
+    sh "rm *.tar.gz"
     step ([$class: 'CopyArtifact',
           projectName: "MNTLAB-${student}-child1-build-job",
-          filter: '*.tar.gz']);
+          filter: "${student}_dsl_script.tar.gz"]);
   }
   stage('Packaging and Publishing results') {
     sh "tar -xzf *.tar.gz jobs.groovy"
     sh "tar -czf pipeline-${student}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile -C build/libs/ gradle-simple.jar"
+    archiveArtifacts "pipeline-${student}-${BUILD_NUMBER}.tar.gz"
+    sh "groovy pullpushArtifacts.groovy -p push -b pipeline-${student} -c ${BUILD_NUMBER}"
   }
 }
