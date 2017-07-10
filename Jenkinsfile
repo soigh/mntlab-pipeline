@@ -25,9 +25,7 @@ node('EPBYMINW1374') {
     stage('Archve artifacts') {
 	archiveArtifacts artifacts: 'build/', onlyIfSuccessful: true
     }
-    stage('Upload archive') {
-	sh "curl -v --user 'admin:admin123' --upload-file build.tar.gz http://10.6.102.44/repository/remote_nginx/artifact.tar.gz"
-    }
+    
     stage('Custom') {
 	sh "tree"
     }
