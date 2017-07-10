@@ -17,18 +17,18 @@ node('EPBYMINW2468') {
 
 
         stage 'Triggering job and fetching artefact after finishing' 
-		echo WORKSPACE
                 build job: 'EPBYMINW2468/MNTLAB-yshchanouski-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'yshchanouski')]
 		echo WORKSPACE
+		step ([$class: 'CopyArtifact',
+		          projectName: 'MNTLAB-yshchanouski-child1-build-job',
+		          filter: 'yshchanouski_dsl_script.tar.gz']);
+
 /*		stash includes: 'yshchanouski_dsl_script.tar.gz', name: 'tarka'
 		stash includes: 'Jenkinsfile', name: 'jenk'
 		stash includes: '**gradle-simple.jar', name 'grad' }*/
 
 	
 	stage 'Packaging and Publishing results'
-		unstash 'tarka'
-		unstash 'jenk'
-		unstash 'grad'
 		sh 'tar -xzf yshchanouski_dsl_script.tar.gz jobs.groovy'
 		sh 'tar -czf pipeline-yshchanouski-{env.BUILD_NUMBER}.tar.gz jobs.groovy gradle-simple.jar Jenkinsfile'
 		archiveArtifacts 'pipeline-yshchanouski-{env.BUILD_NUMBER}.tar.gz'
