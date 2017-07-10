@@ -1,9 +1,11 @@
+def student = "zvirinsky"
+
 node {
-    stage ('Checkout') {
+    stage ('Checking out') {
     //checking out github repository
-    git branch: 'zvirinsky', url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
+    git branch: "${student}", url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
     }
-    stage('Build') {
+    stage('Building code') {
     // Building code
     sh "/opt/gradle-4.0.1/bin/gradle build"
     }
@@ -22,4 +24,9 @@ node {
         }
       )
     }
+    stage("Trigger downstream") {
+        build job: 'MNTLAB-zvirinsky-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: ${student})], wait: false
+    }
+
+
 }
