@@ -5,7 +5,15 @@ node('EPBYMINW2695') {
 
     stage('Build') {
         sh '/opt/gradle/bin/gradle build'
+    }
 
+    stage('Test') {
+        echo 'Testing!!!'
+        parallel (
+                'Unit Tests': {sh 'gradle test' },
+                'Jacoco Tests': {sh 'gradle jacocoTestReport' },
+                'Cucumber Tests': {sh 'gradle cucumber' },
+        )
     }
 
     stage('Deploy') {
