@@ -1,6 +1,6 @@
 def student = "zvirinsky"
 
-node("EPBYMINW2472"){
+node(env.SLAVE){
 
     stage ('Checking out') {
     git branch: "${student}", url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
