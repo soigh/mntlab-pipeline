@@ -3,9 +3,9 @@ node(env.SLAVE) {
    stage('Preparation (Checking out)') { 
       git branch: 'mdemenkova', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
    }
-   stage 'Building code'   
-         sh 'gradle build'        
- 
+	stage 'Building code' {  
+         sh "gradle build"        
+	}
  stage ('Testing code'){
        parallel('Unit Tests':{ 
 	  sh 'gradle cucumber' 
