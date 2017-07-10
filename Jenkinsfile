@@ -1,9 +1,11 @@
 node ('EPBYMINW2471') {
+    def rtGradle = Artifactory.newGradleBuild()
     stage('Preparation (Checking out)') {
         checkout scm
         echo ('Stage: Preparation (Checking out)')
     }
     stage('Building code') {
+        buildInfo=rtGradle.run buildFile: 'build.gradle', tasks: 'clean make'
         echo ('Stage: Building code')
     }
     stage('Testing code') {
