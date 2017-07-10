@@ -27,9 +27,8 @@ node('EPBYMINW1374') {
 	archiveArtifacts artifacts: 'build/', onlyIfSuccessful: true
     }
     stage('Upload') {
-	sh "echo $BUILD_NUMBER"
-	sh "tar -czvf ./artifacts/artifact.tar.gz ./build/"
-	sh "curl -v --user 'admin:admin123' --upload-file ./artifacts/artifact.tar.gz http://10.6.102.44/repository/mnt-pipeline/artifact.tar.gz"
+	sh "tar -czvf ./artifacts/artifact-$BUILD_NUMBER.tar.gz ./build/"
+	sh "curl -v --user 'admin:admin123' --upload-file ./artifacts/artifact.tar-$BUILD_NUMBER.gz http://10.6.102.44/repository/mnt-pipeline/artifact.tar-$BUILD_NUMBER.gz"
     }
     stage('Custom') {
 	sh "tree"
