@@ -1,4 +1,4 @@
-node('"${SLAVE}"') {
+node(env.SLAVE) {
 env.PATH=":/opt/gradle-4.0/bin/"
    stage('Preparation (Checking out)') { 
       git branch: 'mdemenkova', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
