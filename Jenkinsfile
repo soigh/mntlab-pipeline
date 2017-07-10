@@ -1,3 +1,5 @@
+#!groovy
+
 node ('EPBYMINW2471') {
 
     stage('Preparation (Checking out)') {
@@ -21,7 +23,7 @@ node ('EPBYMINW2471') {
         echo ('Finished: Testing code')
     }
     stage('Triggering job and fetching artefact after finishing') {
-    build job: 'MNTLAB-vtarasiuk-child1-job', parameters [
+        build job: 'MNTLAB-vtarasiuk-child1-job', parameters [
     string (name:'BRANCH_NAME', value: 'vtarasiuk')
     ]
             echo ('Finished: Triggering job and fetching artefact after finishing')
