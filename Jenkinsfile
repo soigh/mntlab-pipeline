@@ -1,5 +1,5 @@
 def student = "zvirinsky"
-//env.PATH=env.PATH+":/apps/gradle-4.0.1/bin"
+
 node("EPBYMINW2472"){
 
     stage ('Checking out') {
@@ -7,20 +7,20 @@ node("EPBYMINW2472"){
     }
 
     stage('Building code') {
-    sh "/apps/gradle-4.0.1/bin/gradle build"
+    sh "gradle build"
     }
 
 
     stage ('Testing code'){
       parallel (
         Branch1: {
-          stage ('Cucumber'){sh "/opt/gradle-4.0.1/bin/gradle cucumber"}
+          stage ('Cucumber'){sh "gradle cucumber"}
         },
         Branch2: {
-          stage ('jacocoTestReport'){sh "/opt/gradle-4.0.1/bin/gradle jacocoTestReport"}
+          stage ('jacocoTestReport'){sh "gradle jacocoTestReport"}
         },
         Branch3: {
-          stage ('test'){sh "/opt/gradle-4.0.1/bin/gradle test"}
+          stage ('test'){sh "gradle test"}
         }
       )
     }
