@@ -31,4 +31,8 @@ node('EPBYMINW3092') {
           projectName: "MNTLAB-${student}-child1-build-job",
           filter: '*.tar.gz']);
   }
+  stage('Packaging and Publishing results') {
+    sh "tar -xzf *.tar.gz jobs.groovy"
+    sh "tar -czf pipeline-${student}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile -C build/libs/ gradle-simple.jar"
+  }
 }
