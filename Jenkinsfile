@@ -1,6 +1,6 @@
 #!groovy
 node('EPBYMINW2468') {
-	env.PATH=env.PATH+":/opt/gradle/gradle-4.0.1/bin"
+	env.PATH=env.PATH+":/opt/gradle/gradle-4.0.1/bin:/opt/groovy-2.4.12/bin"
 	stage 'Preparation (Checking out)'
 		//git branch: 'yshchanouski', url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
 		checkout([$class: 'GitSCM', branches: [[name: '*/yshchanouski']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/MNT-Lab/mntlab-pipeline.git']]])
@@ -28,9 +28,6 @@ node('EPBYMINW2468') {
 	 	sh 'ls build/libs'
 		sh 'tar -czf pipeline-yshchanouski-"${BUILD_NUMBER}".tar.gz jobs.groovy Jenkinsfile -C build/libs gradle-simple.jar'
 		archiveArtifacts 'pipeline-yshchanouski-${BUILD_NUMBER}.tar.gz'
-		nexusArtifactUploader artifacts: [[artifactId: "${BUILD_NUMBER}", 
-classifier: 'tar.gz', file: 'pipipeline-mdemenkova-"${BUILD_NUMBER}".tar.gz', type: "${BUILD_NUMBER}"]], 
-credentialsId: 'admin', groupId: 'group', nexusUrl: '192.168.56.11:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'artifact-archive', version: '1.0'
-		
+		sh 'groovy pull-push.groovy -p push -a pipeline-yshchanouski-${BUILD_NUMBER}.tar.gz'
 }
 
