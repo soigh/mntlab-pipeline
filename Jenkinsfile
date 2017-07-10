@@ -1,4 +1,4 @@
-node ('EPBYMINW2471') {
+node {
     stage('Build') {
         echo ('Stage: Build')
     }
