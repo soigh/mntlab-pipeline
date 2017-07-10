@@ -7,13 +7,21 @@ node {
     // Building code
     sh "/opt/gradle-4.0.1/bin/gradle build"
     }
-    stage ('Parallel testing'){
+
+
+    stage ('Testing code'){
       parallel firstBranch: {
+        stage ('Cucumber'){
           sh "/opt/gradle-4.0.1/bin/gradle cucumber"
+        }
       }, secondBranch: {
-          sh "/opt/gradle-4.0.1/bin/gradle jacocoTestReport"
-      }, thirdBranch: {
+        stage ('jococoTestReport'){
+          sh "/opt/gradle-4.0.1/bin/gradle jococoTestReport"
+        }
+      }, secondBranch: {
+        stage ('jococoTestReport'){
           sh "/opt/gradle-4.0.1/bin/gradle test"
-      failFast: true|false
+        }
+      }
     }
 }
