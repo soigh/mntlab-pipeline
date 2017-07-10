@@ -1,5 +1,6 @@
 node ('EPBYMINW2471') {
     stage('Preparation (Checking out)') {
+        checkout scm
         echo ('Stage: Preparation (Checking out)')
     }
     stage('Building code') {
