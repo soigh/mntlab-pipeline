@@ -1,19 +1,20 @@
-node {
+node('EPBYMINW2467') {
+env.PATH=env.PATH+":/opt/gradle-4.0/bin/"
    stage('Preparation (Checking out)') { 
       git branch: 'mdemenkova', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
    }
    stage('Building code') {  
-         sh '/opt/gradle-4.0/bin/gradle clean build'        
+         sh 'gradle clean build'        
  }
  stage ('Testing code'){
        parallel('Unit Tests':{ 
-	  sh '/opt/gradle-4.0/bin/gradle cucumber' 
+	  sh 'gradle cucumber' 
 		},
 		'Jacoco Tests':{
-	  sh '/opt/gradle-4.0/bin/gradle jacocoTestReport' 
+	  sh 'gradle jacocoTestReport' 
 		},
 		'Cucumber Tests':{
-		  sh '/opt/gradle-4.0/bin/gradle test' 
+		  sh 'gradle test' 
 		})       
   	  }   
  
