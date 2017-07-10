@@ -1,5 +1,5 @@
 #!groovy
-node('EPBYMINW2466') {
+node {
 stage('Build')	{
 sh '/opt/gradle/bin/gradle clean build'
      }
