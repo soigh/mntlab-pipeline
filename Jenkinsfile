@@ -1,5 +1,6 @@
 #!groovy
 node('EPBYMINW2468') {
+	env.PATH=env.PATH+":/opt/gradle/gradle-4.0.1/bin"
 	stage('Preparation (Checking out)') {
 		//git branch: 'yshchanouski', url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
 		checkout([$class: 'GitSCM', branches: [[name: '*/yshchanouski']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/MNT-Lab/mntlab-pipeline.git']]])
