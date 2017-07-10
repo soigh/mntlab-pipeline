@@ -19,7 +19,10 @@ node('EPBYMINW1374') {
         }
         )
     }
+    stage('Java') {
+    	sh "java -version"
+    }
     stage('Custom'){
-	sh "tree"
+	sh "tree ./build/"
     }
 }
