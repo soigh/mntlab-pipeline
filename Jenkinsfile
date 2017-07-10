@@ -10,7 +10,7 @@ sh "gradle build"
 
 stage('Testing code') {
 	parallel (
-	2Branch: {
+	1Branch: {
 	stage ('Cucumber')
 		{
 			sh "/opt/gradle/bin/gradle cucumber"
