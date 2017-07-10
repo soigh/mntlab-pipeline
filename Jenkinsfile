@@ -11,19 +11,19 @@ sh "./gradle/bin/gradle build"
 
 stage ('Testing code'){
       parallel (
-        Branch1: {
+        firstBranch: {
           stage ('Cucumber')
 		{
 			sh "./gradle/bin/gradle cucumber"
 		}
         },
-        Branch2: {
+        secondBranch: {
           stage ('test')
 		{
 			sh "./gradle/bin/gradle test"
 		}
         },
-        Branch3: {
+        thirdBranch: {
           stage ('jacocoTestReport')
 		{
 			sh "./gradle/bin/gradle jacocoTestReport"
@@ -32,8 +32,8 @@ stage ('Testing code'){
       )
 }
 
-//stage('Triggering job and fetching artefact after finishing') {
-//	build job: 'MNTLAB-akarzhou-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'akarzhou')]
-//	}
+stage('Triggering job and fetching artefact after finishing') {
+	build job: 'MNTLAB-akarzhou-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'akarzhou')]
+	}
 }
 
