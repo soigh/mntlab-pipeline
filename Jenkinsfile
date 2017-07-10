@@ -4,10 +4,9 @@ node('EPBYMINW2466') {
 stage('Checking out') {
 git branch: 'akarzhou', url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
 	}	
-
-stage('Build')	{
-sh '/opt/gradle/bin/gradle build'
-	}
+stage 'Building code' {
+sh 'gradle build'
+}
 
 stage('Testing code')
 	parallel firstBranch: {
