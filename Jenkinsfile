@@ -31,7 +31,7 @@ node {
           filter: '*.tar.gz']);
     }
     stage('Packaging and publishing results') {
-        sh "tar -xf *.tar.gz"
+        sh "tar -xf ${student}_dsl_script.tar.gz"
         sh "tar -zcf pipeline-${student}-${BUILD_NUMBER}.tar.gz build/libs/gradle-simple.jar jobs.groovy Jenkinsfile"
     }
 
