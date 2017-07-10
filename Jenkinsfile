@@ -8,7 +8,7 @@ node ('EPBYMINW6405'){
 stage('Builing code') {
      sh 'gradle build'  
     }
-}
+
 /*pipeline {
     agent any
     stages {
@@ -20,13 +20,13 @@ stage('Builing code') {
 } */
 
 stage('Testing code') {
-  parallel (
-     stage('Cucumber Tests') {sh 'gradle cucumber' },
-     stage('Jacoco Tests') {sh 'gradle jacocoTestReport'
-     stage('Unit Tests') {sh 'gradle test' }
-  )
+parallel (
+    stage('Cucumber Tests') {sh 'gradle cucumber' },
+    stage('Jacoco Tests') {sh 'gradle jacocoTestReport' },
+    stage('Unit Tests') {sh 'gradle test' }
+    )
 }
-  post { 
+    post { 
         always { 
             echo 'All tests are passed successfully'
         }
