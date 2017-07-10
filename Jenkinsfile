@@ -4,7 +4,7 @@ node('EPBYMINW1374') {
 	fileExists 'build.gradle'
     }
     stage('Build project') {
-	sh "./gradle/4.0.1/bin/gradle clean build"
+	sh "./gradle/4.0.1/bin/gradle build"
     }
     stage('Testing') {
 	parallel (
