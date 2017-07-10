@@ -32,7 +32,7 @@ node('EPBYMINW2468') {
 	stage 'Asking for manual approval'
 		input id: 'Answer', message: 'Approve this build?', ok: 'Approve'
 	stage 'Deployment'
-		sh 'java -jar build/libs gradle-simple.jar'
+		sh 'java -jar build/libs/gradle-simple.jar'
 	stage 'Send status'
 		echo 'SUCCESS'
 }
