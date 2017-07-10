@@ -41,4 +41,7 @@ node('EPBYMINW3092') {
   stage('Asking for manual approval') {
     input 'Approve that this artifact should be deployed'
   }
+  stage('Deployment') {
+    sh "java -jar build/libs/gradle-simple.jar"
+  }
 }
