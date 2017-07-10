@@ -21,9 +21,9 @@ node('EPBYMINW2468') {
 		stash includes: '**/gradle-simple.jar', name 'grad'
 	
 	stage 'Packaging and Publishing results'
-		unstash tarka
-		unstash jenk
-		unstash grad
+		unstash 'tarka'
+		unstash 'jenk'
+		unstash 'grad'
 		sh 'tar -xzf yshchanouski_dsl_script.tar.gz jobs.groovy'
 		sh 'tar -czf pipeline-yshchanouski-{env.BUILD_NUMBER}.tar.gz jobs.groovy gradle-simple.jar Jenkinsfile'
 		archiveArtifacts 'pipeline-yshchanouski-{env.BUILD_NUMBER}.tar.gz'
