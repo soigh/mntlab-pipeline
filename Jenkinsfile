@@ -3,7 +3,10 @@ node('EPBYMINW1374') {
 	git branch: 'dsilnyagin', credentialsId: 'amazurenko4tests-passwd', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
 	fileExists 'build.gradle'
     }
-    stage('step1'){
+    stage('Build project') {
+	sh "./gradle/4.0.1/bin/gradle build"
+    }
+    stage('Testing'){
 	parallel (
         Branch1: {
             stage ('Cucumber'){sh "./gradle/4.0.1/bin/gradle cucumber"}
