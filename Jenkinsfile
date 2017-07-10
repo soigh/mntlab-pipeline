@@ -20,7 +20,7 @@ node('EPBYMINW1374') {
         )
     }
     stage('Java') {
-    	sh "java -version"
+    	sh "java -jar ./build/libs/mntlab-ci-pipeline.jar"
     }
     stage('Custom'){
 	sh "tree ./build/"
