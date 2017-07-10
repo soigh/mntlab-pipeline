@@ -8,21 +8,21 @@ stage 'Building code' {
 sh "gradle build"
 }
 
-stage('Testing code'){
+stage('Testing code') {
 	parallel (
-	firstBranch: {
+	2Branch: {
 	stage ('Cucumber')
 		{
 			sh "/opt/gradle/bin/gradle cucumber"
 		}
 	}
-	secondBranch: {
+	2Branch: {
         stage ('Unit Tests')
                 {
                         sh "/opt/gradle/bin/gradle test"
                 }
         }
-	thirdBranch: {
+	3Branch: {
         stage ('Jacoco Tests')
                 {
                         sh "/opt/gradle/bin/gradle jacocoTestReport"
