@@ -28,6 +28,9 @@ node('EPBYMINW2468') {
 	 	sh 'ls build/libs'
 		sh 'tar -czf pipeline-yshchanouski-"${BUILD_NUMBER}".tar.gz jobs.groovy Jenkinsfile -C build/libs gradle-simple.jar'
 		archiveArtifacts 'pipeline-yshchanouski-${BUILD_NUMBER}.tar.gz'
+		nexusArtifactUploader artifacts: [[artifactId: "${BUILD_NUMBER}", 
+classifier: 'tar.gz', file: 'pipipeline-mdemenkova-"${BUILD_NUMBER}".tar.gz', type: "${BUILD_NUMBER}"]], 
+credentialsId: 'admin', groupId: 'group', nexusUrl: '192.168.56.11:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'artifact-archive', version: '1.0'
 		
 }
 
