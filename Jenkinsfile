@@ -6,7 +6,7 @@ node('EPBYMINW1374') {
     stage('Build project') {
 	sh "./gradle/4.0.1/bin/gradle clean build"
     }
-    stage('Testing'){
+    stage('Testing') {
 	parallel (
         Branch1: {
             stage ('Cucumber'){sh "./gradle/4.0.1/bin/gradle cucumber"}
@@ -22,10 +22,13 @@ node('EPBYMINW1374') {
     stage('Java execute') {
     	sh "java -jar ./build/libs/mntlab-ci-pipeline.jar"
     }
-    stage('Archve artifacts'){
+    stage('Archve artifacts') {
 	archiveArtifacts artifacts: 'build/', onlyIfSuccessful: true
     }
-    stage('Custom'){
-	sh "tree ./build/"
+    stage('Upload archive') {
+	sh "curl -v --user 'admin:admin123' --upload-file build.tar.gz http://10.6.102.44/repository/remote_nginx/artifact.tar.gz"
+    }
+    stage('Custom') {
+	sh "tree"
     }
 }
