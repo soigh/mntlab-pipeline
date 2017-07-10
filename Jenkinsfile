@@ -36,6 +36,7 @@ node("EPBYMINW2472"){
         sh "tar -xf ${student}_dsl_script.tar.gz"
         sh "tar -zcf pipeline-${student}-${BUILD_NUMBER}.tar.gz build/libs/gradle-simple.jar jobs.groovy Jenkinsfile"
         archiveArtifacts "pipeline-${student}-${BUILD_NUMBER}.tar.gz"
+        sh "groovy nexus_files.groovy -t push -a pipeline-${student} -c ${BUILD_NUMBER} -r project-releases"
 
         }
     }
