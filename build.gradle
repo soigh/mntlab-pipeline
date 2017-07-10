@@ -16,6 +16,7 @@ configurations {
     }
 }
 jar {
+    archiveName = 'gradle-simple.jar'
     manifest {
         attributes('Main-Class': 'Hello',
 		   "Implementation-Title": "Gradle",
