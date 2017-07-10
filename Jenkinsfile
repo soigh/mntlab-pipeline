@@ -25,7 +25,10 @@ node('EPBYMINW3092') {
       }
     )
   }
-  stage('Triggering job') {
+  stage('Triggering job and fetching artifact') {
     build job: "MNTLAB-${student}-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: "${student}")]
+    step ([$class: 'CopyArtifact',
+          projectName: "MNTLAB-${student}-child1-build-job",
+          filter: '*.tar.gz']);
   }
 }
