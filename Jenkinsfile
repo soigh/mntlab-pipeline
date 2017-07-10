@@ -9,21 +9,10 @@ node (env.SLAVE) {
               sh "gradle build"
            }
 
+  parallel (
+     'Unit Tests' : { sh "gradle cucumber" }
+     'Jacoco Tests' : { sh "gradle jacocoTestReport" }
+     'Cucumber Tests' : {  sh "gradle test" }
 
-  parallel(firstTask: {
-    stage 'Unit Tests' {
-        sh "gradle cucumber"
-       }
-
-        }, secondTask: {
-           stage 'Jacoco Tests'{
-          sh "gradle jacocoTestReport"
-       }
-
-        }, thirdTask: {
-          stage 'Cucumber Tests'{
-            sh "gradle test"
-          }
-    }
   )
 }
