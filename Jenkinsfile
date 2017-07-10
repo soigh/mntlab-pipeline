@@ -1,5 +1,5 @@
 def student = "zvirinsky"
-env.PATH=env.PATH+":/apps/gradle-4.0.1/bin"
+//env.PATH=env.PATH+":/apps/gradle-4.0.1/bin"
 node("EPBYMINW2472"){
 
     stage ('Checking out') {
@@ -7,7 +7,7 @@ node("EPBYMINW2472"){
     }
 
     stage('Building code') {
-    sh "gradle build"
+    sh "/apps/gradle-4.0.1/bin/gradle build"
     }
 
 
