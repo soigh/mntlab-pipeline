@@ -1,14 +1,6 @@
 node {
-    stage('Build') {
-        sh 'make'
-    }
-
-    stage('Test') {
-        sh 'make check'
-        junit 'reports/**/*.xml'
-    }
-
-    stage('Deploy') {
-        sh 'make publish'
-    }
+    stage(){
+	    git branch: 'dsilnyagin', credentialsId: 'amazurenko4tests-passwd', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
+	    fileExists 'build.gradle'
+	}
 }
