@@ -1,6 +1,6 @@
 node {
 stage('Build'){
-sh 'echo "Hekko"'
+sh 'sh 'gradle build''
      }
 }
 
