@@ -29,7 +29,7 @@ node('EPBYMINW2468') {
 		jar.baseName = 'gradle-simple.jar'
 		sh 'ls build/libs'
 
-		sh 'tar -czf pipeline-yshchanouski-{env.BUILD_NUMBER}.tar.gz jobs.groovy build/libs/gradle-simple.jar Jenkinsfile'
+		sh 'tar -czf pipeline-yshchanouski-{env.BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile'
 		archiveArtifacts 'pipeline-yshchanouski-${env.BUILD_NUMBER}.tar.gz'
 		
 }
