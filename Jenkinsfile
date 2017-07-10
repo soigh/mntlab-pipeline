@@ -1,24 +1,16 @@
 #!groovy
 
-node ('EPBYMINW6405'){
-    stage('Build') {
-     sh 'make'
-    }
+node(env.SLAVE) {
+	env.PATH=env.PATH+":/opt/gradle-4.0/bin"
+
+stage('Preparation (Checking out)') { 
+		git branch: 'pyurchuk', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
+}
 
 stage('Builing code') {
      sh 'gradle build'  
-    }
-
-/*pipeline {
-    agent any
-    stages {
-        stage('Example') {
-            steps {
-                echo 'Hello World'
-            }
-        }
-} */
-
+}
+    
 stage('Testing code') {
 parallel (
     stage('Cucumber Tests') {sh 'gradle cucumber' },
@@ -32,4 +24,3 @@ parallel (
         }
     }
 }
-//}
