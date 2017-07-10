@@ -5,6 +5,7 @@ node('EPBYMINW2468') {
 		checkout([$class: 'GitSCM', branches: [[name: '*/yshchanouski']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/MNT-Lab/mntlab-pipeline.git']]])
 	}
 	stage('Building code') {
+		sh 'whoami && pwd && echo $PATH'
         	sh 'gradle build'
 	}
 	stage('Testing code') {
