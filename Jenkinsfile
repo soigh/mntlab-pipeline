@@ -1,10 +1,10 @@
-/* #!groovy
+#!groovy
 
-node {
+node ('EPBYMINW6405'){
     stage('Build') {
      sh 'make'
     }
-
+/*
     stage('Test') {
          sh 'make check'
     *///    junit 'reports/**/*.xml'
@@ -13,8 +13,7 @@ node {
     stage('Deploy') {
      sh 'make publish'  
     }
-}*/
-
+}
 pipeline {
     agent any
     stages {
@@ -23,6 +22,14 @@ pipeline {
                 echo 'Hello World'
             }
         }
+    } */
+    stage('Testing code') {
+		parallel (
+			stage('Cucumber Tests') {sh 'gradle cucumber' },
+                        stage('Jacoco Tests') {sh 'gradle jacocoTestReport' },
+                        stage('Unit Tests') {sh 'gradle test' }
+		)
+		
     }
     post { 
         always { 
@@ -30,3 +37,4 @@ pipeline {
         }
     }
 }
+//}
