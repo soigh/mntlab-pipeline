@@ -44,4 +44,7 @@ node('EPBYMINW3092') {
   stage('Deployment') {
     sh "java -jar build/libs/gradle-simple.jar"
   }
+  stage('Sending status') {
+    echo 'SUCCESS. All stages have been completed successfully'
+  }
 }
