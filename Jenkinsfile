@@ -24,7 +24,7 @@ node('EPBYMINW1374') {
     }
     stage('Archve artifacts') {
 	archiveArtifacts artifacts: 'build/', onlyIfSuccessful: true
-	tar -czvf artifact-$BUILD_NUMBER.tar.gz ./build/
+	sh "tar -czvf artifact-$BUILD_NUMBER.tar.gz ./build/"
     }
     
     stage('Custom') {
