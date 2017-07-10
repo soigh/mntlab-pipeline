@@ -16,7 +16,7 @@ node('EPBYMINW2468') {
 		)
 
 
-        stage 'Triggering job and fetching artefact after finishing' {
+        stage 'Triggering job and fetching artefact after finishing' 
 		echo WORKSPACE
                 build job: 'EPBYMINW2468/MNTLAB-yshchanouski-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'yshchanouski')]
 		echo WORKSPACE
