@@ -5,6 +5,6 @@ node {
     }
     stage('Build') {
     // Building code
-    gradle build
+    sh "gradle build"
     }
 }
