@@ -41,8 +41,8 @@ stage('Triggering job and fetching artefact after finishing') {
 stage('Packaging and Publishing results') {
 	sh "tar -xzf akarzhou_dsl_script.tar.gz jobs.groovy"
 	sh "tar -czf pipeline-akarzhou-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile"
-	archiveArtifacts artifacts: 'pipeline-akarzhou-${BUILD_NUMBER}.tar.gz'}
-nexusArtifactUploader artifacts: {
+	archiveArtifacts artifacts: 'pipeline-akarzhou-${BUILD_NUMBER}.tar.gz'
+	nexusArtifactUploader artifacts: {
 artifactId: "${BUILD_NUMBER}", 
 classifier: 'tar.gz', 
 credentialsId: 'admin', 
@@ -54,6 +54,7 @@ nexusVersion: 'nexus3',
 protocol: 'http', 
 repository: 'Artifact-storage', 
 version: 'release'
+	}
 }
 }
 
