@@ -1,12 +1,12 @@
 node(env.SLAVE) {
-	env.PATH=env.PATH+':/opt/gradle-4.0.1/bin'
+	env.PATH=env.PATH+":/opt/gradle-4.0.1/bin"
 
 stage('Preparation (Checking out)') { 
-		git branch: "pyurchuk", url: 'https://github.com/MNT-Lab/mntlab-pipeline'
+		git branch: 'pyurchuk', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
 }
 
 stage('Builing code') {
-     sh 'gradle build'  
+     sh "gradle build"  
 }
     
 stage('Testing code') {
@@ -16,11 +16,7 @@ parallel (
     'Unit Tests': { sh "gradle test" }
     )
 }
-/*    post { 
-        always { 
-            echo 'All tests are passed successfully'
-        }
-    }*/
+
 stage ('Triggering job and fetching artefact after finishing') {
 build job: "EPBYMINW6405/MNTLAB-${student}-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: "${student}")]
 
