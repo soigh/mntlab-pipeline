@@ -40,8 +40,7 @@ stage('Triggering job and fetching artefact after finishing') {
 }
 stage('Packaging and Publishing results') {
 	sh "tar -xvf akarzhou_dsl_script.tar.gz jobs.groovy"
-	sh "cp /build/libs/gradle-simple.jar ./"
-	sh "tar -czvf pipeline-{akarzhou}-{buildNumber}.tar.gz Jenkinsfile jobs.groovy gradle-simple.jar"
-}
+	sh "ar -czvf pipeline-{akarzhou}-{buildNumber}.tar.gz Jenkinsfile jobs.groovy gradle-simple.jar -C build/libs/ gradle-simple.jar"
+	sh archiveArtifacts artifacts: 'pipeline-{akarzhou}-{buildNumber}.tar.gz', fingerprint: true}
 }
 
