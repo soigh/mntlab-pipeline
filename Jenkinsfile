@@ -19,7 +19,7 @@ parallel (
 
 stage ('Triggering job and fetching artefact after finishing') {
 build job: "EPBYMINW6405/MNTLAB-${student}-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: "${student}")]
-
+echo WORKSPACE
 step(
     [$class: 'CopyArtifact',
     filter: "${student}_dsl_script.tar.gz",
