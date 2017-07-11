@@ -1,5 +1,5 @@
 node (env.SLAVE) {
-       def student = ndolya
+       def student = 'ndolya'
        env.PATH=env.PATH +":/home/student/groovy-2.4.12/bin:/home/student/gradle/gradle-4.0.1/bin"
 
  stage('Preparation (Checking out)') {
