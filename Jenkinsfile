@@ -13,11 +13,11 @@ node('EPBYMINW1766') {
         echo "==> Testing stage begins."
         parallel (
                 echo "==> Unit Test  stage begins."
-                'Unit Tests': {sh '/opt/gradle/bin/gradle test' },
+                phase1: {sh '/opt/gradle/bin/gradle test' },
                 echo "==> Jacoco Test stage begins."
-                'Jacoco Tests': {sh '/opt/gradle/bin/gradle jacocoTestReport' },
+                phase2: {sh '/opt/gradle/bin/gradle jacocoTestReport' },
                 echo "==> Cucumber Test stage begins."
-                'Cucumber Tests': {sh '/opt/gradle/bin/gradle cucumber' },
+                phase3: {sh '/opt/gradle/bin/gradle cucumber' }
         )
     }
 }
