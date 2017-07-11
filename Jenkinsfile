@@ -26,5 +26,6 @@ node('EPBYMINW2695') {
         sh 'tar xvf adoropei_dsl_script.tar.gz'
         sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
         sh 'tar -czf pipeline-adoropei-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
+        archiveArtifacts 'pipeline-adoropei-${BUILD_NUMBER}.tar.gz'
     }
 }
