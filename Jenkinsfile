@@ -1,3 +1,3 @@
-node('EPBYMINW2033') {
+node(env.SLAVE) {
     // some block
 }
