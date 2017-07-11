@@ -16,11 +16,11 @@ parallel (
     'Unit Tests': { sh "gradle test" }
     )
 }
-    post { 
+/*    post { 
         always { 
             echo 'All tests are passed successfully'
         }
-    }
+    }*/
     stage ('Triggering job and fetching artefact after finishing') {
     
     build job: "MNTLAB-pyurchuk-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: "pyurchuk")]
