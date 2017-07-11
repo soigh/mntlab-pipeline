@@ -23,7 +23,7 @@ node('EPBYMINW1766') {
         step ([$class: 'CopyArtifact',
         projectName: "MNTLAB-amaslakou-child-1-build-job",
         filter: 'amaslakou_dsl_script.tar.gz']);
-  }
+    }
     stage('Packaging and Publishing') {
         echo "==> Packaging and Publishing stage begins."
         sh 'tar xvf amaslakou_dsl_script.tar.gz'
@@ -34,15 +34,15 @@ node('EPBYMINW1766') {
     stage('Asking for manual approval') {
         echo "==> Approval stage begins."
         input 'Approve deploy?'
-  }
+    }
     stage('Deployment') {
         echo "==> Deployment stage begins."
-        sh "java -jar build/libs/gradle-simple.jar"
+        sh "java -jar gradle-simple.jar"
     }
 
     stage('Sending status') {
     echo "===> SUCCESS!"
-  }
+   }
     
 
 }
