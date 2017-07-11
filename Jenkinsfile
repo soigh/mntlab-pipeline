@@ -11,8 +11,11 @@ import java.net.URL
  
 
 node (env.SLAVE) {
-stage '\u2776 Preparation (Checking out)'
 
+	env.PATH=env.PATH+":/opt/gradle/bin"
+
+stage '\u2776 Preparation (Checking out)'
+	
 	git url: "https://github.com/MNT-Lab/mntlab-pipeline.git", branch: 'atsuranau'
 	echo "\u2600 Repo downloaded"
  
