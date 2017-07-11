@@ -11,17 +11,18 @@ import java.net.URL
  
 
 node {
-stage '\u2776 Stage 1'
-git url: "https://github.com/MNT-Lab/mntlab-pipeline.git", branch: 'atsuranau'
+stage '\u2776 Preparation (Checking out)'
 
-echo "\u2600 Repo downloaded"
+	git url: "https://github.com/MNT-Lab/mntlab-pipeline.git", branch: 'atsuranau'
+	echo "\u2600 Repo downloaded"
  
 
  
-stage '\u2777 Stage 2'
-
-   wrap([$class: 'TimestamperBuildWrapper']) {
-      echo "Done"
+stage '\u2777 Building'
+	
+	sh 'gradle build'
+	wrap([$class: 'TimestamperBuildWrapper']) {
+     	echo "\u2600 Build completed"
    }
 
 } // node
