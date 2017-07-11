@@ -33,6 +33,7 @@ node ('EPBYMINW2471') {
     stage('Packaging and Publishing results') {
             shell ('tar -xzf vtarasiuk_dsl_script.tar.gz && cp vtarasiuk_dsl_script/Jenkinsfile ./ && cp vtarasiuk_dsl_script/jobs.groovy ./')
             archiveArtifacts artifacts: 'build/libs/gradle-simple.jar, Jenkinsfile, jobs.groovy', onlyIfSuccessful: true
+            shell ('ls -la')
             echo ('Finished: Packaging and Publishing results')
     }
     stage('Asking for manual approval') {
