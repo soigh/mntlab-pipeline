@@ -43,7 +43,7 @@ node(env.SLAVE){
         input id: 'Manual approve', message: 'Deploy the artifact?', ok: 'Deploy'
     }
     stage('Deployment') {
-        sh "java -jar /build/libs/gradle-simple.jar"
+        sh "java -jar build/libs/gradle-simple.jar"
     }
 
     stage('Sending status') {
