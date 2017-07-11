@@ -13,15 +13,9 @@ node(env.SLAVE){
 
     stage ('Testing code'){
       parallel (
-        Branch1: {
-          stage ('Cucumber'){sh "gradle cucumber"}
-        },
-        Branch2: {
-          stage ('jacocoTestReport'){sh "gradle jacocoTestReport"}
-        },
-        Branch3: {
-          stage ('test'){sh "gradle test"}
-        }
+        Branch1: { sh "gradle cucumber"},
+        Branch2: { sh "gradle jacocoTestReport"},
+        Branch3: { sh "gradle test"}          
       )
     }
 
