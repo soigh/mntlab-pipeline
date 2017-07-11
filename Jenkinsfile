@@ -37,7 +37,7 @@ stage '\u2779 Triggering job and fetching artifacts'
 		filter: 'atsuranau_dsl_script.tar.gz', 
 		fingerprintArtifacts: true, 
 		flatten: true, 
-		projectName: EPBYMINW2629/MNTLAB-atsuranau-child1-build-job, 
+		projectName: 'EPBYMINW2629/MNTLAB-atsuranau-child1-build-job', 
 		target: '.'])
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
