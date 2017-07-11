@@ -32,7 +32,7 @@ node('EPBYMINW1374') {
 	sh "curl -v --user 'admin:admin123' --upload-file ./artifacts/pipeline-'$BUILD_NUMBER'.tar.gz http://10.6.102.44/repository/mnt-pipeline/pipeline.tar-'$BUILD_NUMBER'.tar.gz"
     }
     stage('Approve') {
-	input 'Deploy!'
+	timeout(time:5, unit:'MINUTES') { input message:'Approve deployment?' }
     }
     stage('Java execute') {
     	sh "java -jar ./build/libs/mntlab-ci-pipeline.jar"
