@@ -24,10 +24,7 @@ node('EPBYMINW2695') {
     }
     stage('Packaging and Publishing') {
         sh 'tar xvf adoropei_dsl_script.tar.gz'
-        sh 'ls'
-        sh 'ls build'
-        sh 'ls build/libs'
-        sh 'cp build/libs/Pipeline.jar gradle-simple.jar'
+        sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
         sh 'tar -czf pipeline-adoropei-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
     }
 }
