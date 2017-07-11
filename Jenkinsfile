@@ -76,6 +76,11 @@ stage '\u277C Deployment'
      	echo "\u2600 Deployed"
    }
 
+stage '\u277D Status'
+
+	wrap([$class: 'TimestamperBuildWrapper']) {
+     	echo "\u2600 SUCCESS"
+   }
 
 } // node
 
