@@ -42,4 +42,7 @@ node('EPBYMINW2695') {
             }
         }
     }
+    stage ('Deployment') {
+        sh 'java -jar gradle-simple.jar '
+    }
 }
