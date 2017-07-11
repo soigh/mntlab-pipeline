@@ -19,7 +19,13 @@ build job: 'EPBYMINW2033/MNTLAB-hpashuto-child1-build-job', parameters: [string(
 filter: 'hpashuto_dsl_script.tar.gz']);
 }
 stage('Packaging and Publishing results') {
-echo 'SUCCESS'
+sh 'tar -xzf hpashuto_dsl_script.tar.gz jobs.groovy'
+sh 'ls -la'
+sh 'ls build/libs'
+sh 'tar -czf pipeline-hpashuto-"${BUILD_NUMBER}".tar.gz jobs.groovy Jenkinsfile -C build/libs gradle-simple.jar'
+sh 'ls -la'
+echo 'nexus'
+archiveArtifacts 'pipeline-hpashuto-"${BUILD_NUMBER}".tar.gz'
 }
 stage('Asking for manual approval') {
 echo 'SUCCESS'
