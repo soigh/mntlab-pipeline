@@ -6,7 +6,7 @@ node (env.SLAVE) {
 	env.PATH=env.PATH+":/opt/gradle-3.5/bin:/opt/groovy/bin"
 	env.ARTIFACT_SUFFIX="pipeline-aaksionkin"
 	echo env.ARTIFACT_SUFFIX
-	env.ACTION="push"
+	//env.ACTION="push"
 
 stage 'Preparation (Checking out)'
 	
@@ -17,7 +17,7 @@ stage 'Preparation (Checking out)'
  
 stage 'Building'
 	
-	sh 'gradle build'
+	sh '/opt/gradle-3.5/bin/gradle build'
 	wrap([$class: 'TimestamperBuildWrapper']) {
      	echo "2 Build completed"
    }
@@ -37,7 +37,7 @@ stage ' Triggering job and fetching artifacts'
 
 	build job: 'EPBYMINW3088/MNTLAB-aaksionkin-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'aaksionkin')], wait: true
 	step([$class: 'CopyArtifact', 
-		filter: 'aaksionkin.tar.gz',
+		filter: '${BRANCH_NAME}_dsl_script.tar.gz',
 		fingerprintArtifacts: true, 
 		flatten: true, 
 		projectName: 'EPBYMINW3088/MNTLAB-aaksionkin-child1-build-job',
