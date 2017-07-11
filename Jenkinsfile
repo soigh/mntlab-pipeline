@@ -40,7 +40,7 @@ stage ' Triggering job and fetching artifacts'
 		filter: 'aaksionkin_dsl_script.tar.gz',
 		fingerprintArtifacts: true, 
 		flatten: true, 
-		projectName: 'MNTLAB-aaksionkin-child1-build-job',
+		projectName: 'EPBYMINW3088/MNTLAB-aaksionkin-child1-build-job',
 		target: ''])
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
