@@ -14,7 +14,9 @@ configurations {
     cucumberRuntime {
         extendsFrom testRuntime
     }
+    
 jar.archiveName = 'gradle-simple.jar'
+
 }
 jar {
     manifest {
