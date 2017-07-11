@@ -19,9 +19,9 @@ echo "\u2600 workspace=${workspace}"
  
 stage '\u2777 Stage 2'
 
-def workspace = manager.build.getEnvVars()["WORKSPACE"]
-String fileContents = new File('${workspace}/filename.txt').text
-manager.createSummary("folder.gif").appendText("${fileContents }")
+   wrap([$class: 'TimestamperBuildWrapper']) {
+      echo "Done"
+   }
 
 } // node
 
