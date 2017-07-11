@@ -12,9 +12,9 @@ node('EPBYMINW1766') {
     stage('Test'){
         echo "==> Testing stage begins."
         parallel (
-                phase1: {echo "==> Unit Test  stage begins."; sh '/opt/gradle/bin/gradle test' },
-                phase2: {echo "==> Jacoco Test stage begins."; sh '/opt/gradle/bin/gradle jacocoTestReport' },
-                phase3: {echo "==> Cucumber Test stage begins."; sh '/opt/gradle/bin/gradle cucumber' }
+                phase1: {echo "==> Unit Test  stage begins."; sh '/opt/gradle/gradle-4.0.1/bin/gradle test' },
+                phase2: {echo "==> Jacoco Test stage begins."; sh '/opt/gradle/gradle-4.0.1/bin/gradle jacocoTestReport' },
+                phase3: {echo "==> Cucumber Test stage begins."; sh '/opt/gradle/gradle-4.0.1/bin/gradle cucumber' }
         )
     }
 }
