@@ -43,17 +43,7 @@ stage('Packaging and Publishing results') {
 	sh "tar -czf pipeline-akarzhou-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile"
 	archiveArtifacts artifacts: 'pipeline-akarzhou-${BUILD_NUMBER}.tar.gz'
 	nexusArtifactUploader artifacts: 
-[[artifactId: "${BUILD_NUMBER}", 
-classifier: 'tar.gz', 
-file: '/target/pipeline-akarzhou-"${BUILD_NUMBER}".tar.gz', 
-type: "${BUILD_NUMBER}"]], 
-credentialsId: 'admin',
-groupId: 'groupid', 
-nexusUrl: '192.168.56.24:8081', 
-nexusVersion: 'nexus3', 
-protocol: 'http', 
-repository: 'Artifact-storage', 
-version: 'release'
+[[artifactId: "${BUILD_NUMBER}", classifier: 'tar.gz', file: '/target/pipeline-akarzhou-"${BUILD_NUMBER}".tar.gz', type: "${BUILD_NUMBER}"]], credentialsId: 'admin', groupId: 'groupid', nexusUrl: '192.168.56.24:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'Artifact-storage',version: 'release'
 	}
 }
 
