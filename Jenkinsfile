@@ -46,11 +46,11 @@ stage('Packaging and Publishing results') {
 	}
 stage('Asking for manual approval') {
 timeout(time: 120, unit: 'SECONDS') 
-        input message: 'Do you want to release this build?', ok: "Yes"
-              parameters: [[$class: 'BooleanParameterDefinition',
-                            defaultValue: false,
-                            description: 'Ticking this box will do a release',
-                            name: 'Release']]
+        input message: 'Do you want to release this build?', ok: 'Yes'
+//              parameters: [[$class: 'BooleanParameterDefinition',
+//                            defaultValue: false,
+//                            description: 'Ticking this box will do a release',
+//                            name: 'Release']]
     
 }
 stage('Deployment') {
