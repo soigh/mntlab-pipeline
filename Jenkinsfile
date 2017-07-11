@@ -7,18 +7,18 @@ node ('EPBYMINW2471') {
         echo ('Finished: Preparation (Checking out)')
     }
     stage('Building code') {
-        shell ('gradle build')
+        sh ("gradle build")
         echo ('Finished: Building code')
     }
     stage('Testing code') {
         parallel cucumber: {
-            shell ('gradle cucumber')
+            sh ("gradle cucumber")
         },
         jacoco: {
-            shell ('gradle jacocoTestReport')
+            sh ("gradle jacocoTestReport")
         },
         gradle: {
-            shell ('gradle test')
+            sh ("gradle test")
         }
         echo ('Finished: Testing code')
     }
@@ -31,7 +31,7 @@ node ('EPBYMINW2471') {
             echo ('Finished: Triggering job and fetching artefact after finishing')
     }
     stage('Packaging and Publishing results') {
-            shell ('tar -xzf vtarasiuk_dsl_script.tar.gz &&  cp vtarasiuk_dsl_script/jobs.groovy ./')
+            sh ("tar -xzf vtarasiuk_dsl_script.tar.gz &&  cp vtarasiuk_dsl_script/jobs.groovy ./")
             archiveArtifacts artifacts: 'build/libs/gradle-simple.jar, Jenkinsfile, jobs.groovy', onlyIfSuccessful: true
             sh ("ls -l")
             echo ('Finished: Packaging and Publishing results')
