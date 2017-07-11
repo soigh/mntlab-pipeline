@@ -9,7 +9,7 @@ import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
          
 def BUILD_NUMBER=args[1]
-def filePath = 'mdemenkova-'+BUILD_NUMBER+'.tar.gz'
+def filePath = BUILD_NUMBER
 def artifact = "mdemenkova-"
          
 switch (args[0]) {
