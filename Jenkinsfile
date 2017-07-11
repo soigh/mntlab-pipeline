@@ -34,7 +34,8 @@ stage ('Packaging and Publishing results') {
 }
 
 stage ('Asking for manual approval') {
- timeout(time:1, unit:'HOURS') {
-  input message:'Please approve current deployment', ok: 'Yes'
-}
+   timeout(time:1, unit:'HOURS') {
+	input message:'Please approve current deployment', ok: 'Yes'
+      }
+   }
 }
