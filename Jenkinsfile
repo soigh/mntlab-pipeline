@@ -30,6 +30,13 @@ stage '\u2778 Testing'
      	echo "\u2600 Testing completed"
    }
 
+stage '\u2779 Triggering job and fetching artifacts'
+
+	build job: 'MNTLAB-atsuranau-child1-job', parameters: [string(name: 'BRANCH_NAME', value: 'atsuranau')], wait: true
+
+	wrap([$class: 'TimestamperBuildWrapper']) {
+     	echo "\u2600 Job was triggered and finished"
+   }
 
 } // node
 
