@@ -34,7 +34,7 @@ node (env.SLAVE) {
         /*a)*/ sh 'tar xvf vulantsau_dsl_script.tar.gz'
         /*b)*/ sh 'tar zvfc pipeline-${student}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile build/libs/'+JOB_NAME.replace(env.SLAVE+'/',"")+'.jar'
         /*c)*/ archiveArtifacts artifacts: 'pipeline-'+student+'-${BUILD_NUMBER}.tar.gz', allowEmptyArchive: false
-        /*d)*/ nexusArtifactUploader artifacts: [[artifactId: 'task11ArtifactId', classifier: '', file: 'pipeline-'+env.student+'-${BUILD_NUMBER}.tar.gz' , type: 'tar.gz']], credentialsId: 'nexus_cred', groupId: 'task11GroupId', nexusUrl: '192.168.56.51:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'artifacts', version: '1.0'
+        /*d)*/ //nexusArtifactUploader artifacts: [[artifactId: 'task11ArtifactId', classifier: '', file: 'pipeline-'+env.student+'-${BUILD_NUMBER}.tar.gz' , type: 'tar.gz']], credentialsId: 'nexus_cred', groupId: 'task11GroupId', nexusUrl: '192.168.56.51:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'artifacts', version: '1.0'
     }
     stage ('Asking for manual approval') {
         timeout(time:5, unit:'DAYS') {
