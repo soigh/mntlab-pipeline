@@ -3,7 +3,7 @@
 
 node (env.SLAVE) {
 
-	env.PATH=env.PATH+":/opt/gradle-3.5/bin:/opt/groovy/bin"
+	//env.PATH=env.PATH+":/opt/gradle-3.5/bin:/opt/groovy/bin"
 	env.ARTIFACT_SUFFIX="pipeline-aaksionkin"
 	echo env.ARTIFACT_SUFFIX
 	//env.ACTION="push"
