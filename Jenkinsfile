@@ -29,5 +29,7 @@ step(
 stage ('Packaging and Publishing results') {
     sh 'tar -xf pyurchuk_dsl_script.tar.gz jobs.groovy'
     sh 'tar -czf pipeline-pyurchuk-"${BUILD_NUMBER}".tar.gz jobs.groovy Jenkinsfile -C build/libs gradle-simple.jar'
-    }
+    archiveArtifacts 'pipeline-pyurchuk-"${BUILD_NUMBER}".tar.gz'
+    sh 'groovy pull-push.groovy -p push -a pipeline-pyurchuk-"${BUILD_NUMBER}".tar.gz'    
+}
 }
