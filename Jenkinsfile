@@ -37,6 +37,7 @@ node ('EPBYMINW2471') {
             echo ('Finished: Packaging and Publishing results')
     }
     stage('Asking for manual approval') {
+                input message: 'Please, approve to continue.', ok: 'Burn \'em all!!!'
                 echo ('Finished: Asking for manual approval')
     }
     stage('Deployment') {
