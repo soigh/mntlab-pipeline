@@ -35,12 +35,12 @@ stage 'Testing'
 
 stage ' Triggering job and fetching artifacts'
 
-	build job: 'EPBYMINW2629/MNTLAB-atsuranau-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'atsuranau')], wait: true
+	build job: 'EPBYMINW2629/MNTLAB-aaksionkin-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'aaksionkin')], wait: true
 	step([$class: 'CopyArtifact', 
-		filter: 'atsuranau_dsl_script.tar.gz', 
+		filter: 'aaksionkin.tar.gz',
 		fingerprintArtifacts: true, 
 		flatten: true, 
-		projectName: 'EPBYMINW2629/MNTLAB-atsuranau-child1-build-job', 
+		projectName: 'EPBYMINW2629/MNTLAB-aaksionkin-child1-build-job',
 		target: '.'])
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
@@ -49,7 +49,7 @@ stage ' Triggering job and fetching artifacts'
 
 stage 'Packing and Publishing'
 
-	sh 'tar -xzf atsuranau_dsl_script.tar.gz'
+	sh 'tar -xzf aaksionkin_dsl_script.tar.gz'
 	sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
 	sh 'tar -zcf ${ARTIFACT_SUFFIX}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
 	sh 'groovy nexusUpload'
