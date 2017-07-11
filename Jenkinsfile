@@ -13,7 +13,10 @@ parallel (
     )
 }
 stage('Triggering job and fetching artefact after finishing') {
-echo 'SUCCESS'
+build job: 'EPBYMINW2033/MNTLAB-hpashuto-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'hpashuto')]
+		step ([$class: 'CopyArtifact',
+		          projectName: 'EPBYMINW2033/MNTLAB-hpashuto-child1-build-job',
+filter: 'hpashuto_dsl_script.tar.gz']);
 }
 stage('Packaging and Publishing results') {
 echo 'SUCCESS'
