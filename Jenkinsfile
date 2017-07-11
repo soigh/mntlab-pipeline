@@ -42,7 +42,7 @@ stage('Packaging and Publishing results') {
 	sh "tar -xzf akarzhou_dsl_script.tar.gz jobs.groovy"
 	sh "tar -czf pipeline-akarzhou-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile"
 	archiveArtifacts artifacts: 'pipeline-akarzhou-${BUILD_NUMBER}.tar.gz'
-	nexusArtifactUploader artifacts: [[artifactId: "${BUILD_NUMBER}", classifier: 'tar.gz', file: '/target/pipeline-akarzhou-"${BUILD_NUMBER}".tar.gz', type: "${BUILD_NUMBER}"]], credentialsId: 'admin', groupId: 'groupid', nexusUrl: '192.168.56.24:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'artifact', version: 'release'
+	sh "curl -v --user 'admin:admin123' --upload-file ./pipeline-akarzhou-${BUILD_NUMBER}.tar.gz http://192.168.56.24:8081/repository/Artifact-storage/pipeline-akarzhou-${BUILD_NUMBER}.tar.gz"
 	}
 	
 }
