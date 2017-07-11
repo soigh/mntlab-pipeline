@@ -9,7 +9,7 @@ stage('Builing code') {
 	sh "gradle build"  
 	}
     
-stage('Testing code') {
+stage('Testing') {
 parallel (
     'Cucumber Tests': { sh "gradle cucumber" },
     'Jacoco Tests': { sh "gradle jacocoTestReport" },
