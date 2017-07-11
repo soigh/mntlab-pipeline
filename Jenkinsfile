@@ -25,7 +25,7 @@ sh 'ls build/libs'
 sh 'tar -czf pipeline-hpashuto-"${BUILD_NUMBER}".tar.gz jobs.groovy Jenkinsfile -C build/libs gradle-simple.jar'
 sh 'ls -la'
 echo 'nexus'
-archiveArtifacts 'pipeline-hpashuto-"${BUILD_NUMBER}".tar.gz'
+archiveArtifacts 'pipeline-hpashuto-${BUILD_NUMBER}.tar.gz'
 }
 stage('Asking for manual approval') {
 timeout(10) {
