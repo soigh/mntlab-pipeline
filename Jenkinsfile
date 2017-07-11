@@ -45,13 +45,13 @@ stage('Packaging and Publishing results') {
 	sh "curl -v --user 'admin:admin123' --upload-file ./pipeline-akarzhou-${BUILD_NUMBER}.tar.gz http://192.168.56.24:8081/repository/Artifact-storage/pipeline-akarzhou-${BUILD_NUMBER}.tar.gz"
 	}
 stage('Asking for manual approval') {
-timeout(time: 120, unit: 'SECONDS') {
+timeout(time: 120, unit: 'SECONDS') 
         input message: 'Do you want to release this build?', ok: "Yes"
               parameters: [[$class: 'BooleanParameterDefinition',
                             defaultValue: false,
                             description: 'Ticking this box will do a release',
                             name: 'Release']]
-    }
+    
 }
 stage('Deployment') {
 	sh "java -jar build/libs/gradle-simple.jar"
