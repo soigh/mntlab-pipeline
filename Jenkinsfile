@@ -25,7 +25,13 @@ node (env.SLAVE) {
     	)
     }
     stage ('Triggering job and fetching artefact after finishing') {
-    	build job: "MNTLAB-asemirski-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: "asemirski")]
-    }
+    	build job: "MNTLAB-asemirski-child1-build-job", 
+    		  parameters: [string(name: 'BRANCH_NAME', value: "asemirski")],
+    		  wait: true
+    	step([$class: 'CopyArtifact',
+	          projectName: 'MNTLAB-asemirski-child1-build-job',
+        	  filter: 'asemriski_dsl_script.tar.gz']) 
+    		
+    	}
 }
     
