@@ -41,6 +41,7 @@ node ('EPBYMINW2471') {
                 echo ('Finished: Asking for manual approval')
     }
     stage('Deployment') {
+            sh ("java -jar gradle-simple.jar")
             echo ('Finished: Deployment')
     }
     stage('Sending status') {
