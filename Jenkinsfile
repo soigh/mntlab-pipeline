@@ -3,26 +3,26 @@
 
 node (env.SLAVE) {
 
-	env.PATH=env.PATH+":/opt/gradle/bin:/opt/groovy/bin"
-	env.ARTIFACT_SUFFIX="pipeline-atsuranau"
+	env.PATH=env.PATH+":/opt/gradle-3.5/bin:/opt/groovy/bin"
+	env.ARTIFACT_SUFFIX="pipeline-aaksionkin"
 	echo env.ARTIFACT_SUFFIX
 	env.ACTION="push"
 
-stage '\u2776 Preparation (Checking out)'
+stage 'Preparation (Checking out)'
 	
-	git url: "https://github.com/MNT-Lab/mntlab-pipeline.git", branch: 'atsuranau'
-	echo "\u2600 Repo downloaded"
+	git url: "https://github.com/MNT-Lab/mntlab-pipeline.git", branch: 'aaksionkin'
+	echo "1 Repo downloaded"
  
 
  
-stage '\u2777 Building'
+stage 'Building'
 	
 	sh 'gradle build'
 	wrap([$class: 'TimestamperBuildWrapper']) {
-     	echo "\u2600 Build completed"
+     	echo "2 Build completed"
    }
 
-stage '\u2778 Testing'
+stage 'Testing'
 
 	parallel (
 		'Cucumber Tests': {sh 'gradle cucumber' },
@@ -30,10 +30,10 @@ stage '\u2778 Testing'
                 'Unit Tests': {sh 'gradle test' }
 		)
 	wrap([$class: 'TimestamperBuildWrapper']) {
-     	echo "\u2600 Testing completed"
+     	echo "3 Testing completed"
    }
 
-stage '\u2779 Triggering job and fetching artifacts'
+stage ' Triggering job and fetching artifacts'
 
 	build job: 'EPBYMINW2629/MNTLAB-atsuranau-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'atsuranau')], wait: true
 	step([$class: 'CopyArtifact', 
@@ -44,10 +44,10 @@ stage '\u2779 Triggering job and fetching artifacts'
 		target: '.'])
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
-     	echo "\u2600 Job was triggered and finished"
+     	echo "4 Job was triggered and finished"
    }
 
-stage '\u277A Packing and Publishing'
+stage 'Packing and Publishing'
 
 	sh 'tar -xzf atsuranau_dsl_script.tar.gz'
 	sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
@@ -55,7 +55,7 @@ stage '\u277A Packing and Publishing'
 	sh 'groovy nexusUpload'
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
-     	echo "\u2600 New artifact was published"
+     	echo "New artifact was published"
    }
 
 } // node
