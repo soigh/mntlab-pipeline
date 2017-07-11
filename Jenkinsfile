@@ -44,6 +44,8 @@ stage('Packaging and Publishing results') {
 	archiveArtifacts artifacts: 'pipeline-akarzhou-${BUILD_NUMBER}.tar.gz'
 	sh "curl -v --user 'admin:admin123' --upload-file ./pipeline-akarzhou-${BUILD_NUMBER}.tar.gz http://192.168.56.24:8081/repository/Artifact-storage/pipeline-akarzhou-${BUILD_NUMBER}.tar.gz"
 	}
-	
+stage('Deployment') {
+	sh "java -jar /build/libs/gradle-simple.jar"
+	}
 }
 
