@@ -44,5 +44,16 @@ stage '\u2779 Triggering job and fetching artifacts'
      	echo "\u2600 Job was triggered and finished"
    }
 
+stage '\u2780 Packing and Publishing'
+
+	sh 'tar -xzf atsuranau_dsl_script.tar.gz'
+	sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
+	sh 'tar -zcf pipeline-atsuranau-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
+	
+
+	wrap([$class: 'TimestamperBuildWrapper']) {
+     	echo "\u2600 Job was triggered and finished"
+   }
+
 } // node
 
