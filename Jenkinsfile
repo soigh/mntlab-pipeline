@@ -21,6 +21,7 @@ node (env.SLAVE) {
  stage ('Triggering job and fetching artefact after finishing') {
 
  build job: "EPBYMINW1969/MNTLAB-${student}-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: "${student}")]
+ echo WORKSPACE
 step([$class: 'CopyArtifact',
       filter: "${student}_dsl_script.tar.gz",
       projectName: "EPBYMINW1969/MNTLAB-${student}-child1-build-job" ])
