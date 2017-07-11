@@ -11,12 +11,12 @@ node {
     			stage ('cucumber') {
     				sh "gradle cucumber"
     			}
-    		}
+    		},
     		jacoco: {
     			stage ('jacoco') {
     				sh "gradle jacocoTestReport"
     			}
-    		}
+    		},
     		unit: {
     			stage ('unit test') {
     				sh "gradle test"
