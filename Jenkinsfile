@@ -1,25 +1,26 @@
 node (env.SLAVE) {
+	env.PATH=env.PATH+":/opt/gradle/bin"
 	stage('Preparation') {
 		git url:'https://github.com/MNT-Lab/mntlab-pipeline.git', branch: 'asemirski'
 	}
     stage('Gradle Build') {
-        sh "/opt/gradle/bin/gradle buid"
+        sh "gradle buid"
     }
     stage ('Testing') {
     	parallel (
     		cucumber: {
     			stage ('cucumber') {
-    				sh "/opt/gradle/bin/gradle cucumber"
+    				sh "gradle cucumber"
     			}
     		},
     		jacoco: {
     			stage ('jacoco') {
-    				sh "/opt/gradle/bin/gradle jacocoTestReport"
+    				sh "gradle jacocoTestReport"
     			}
     		},
     		unit: {
     			stage ('unit test') {
-    				sh "/opt/gradle/bin/gradle test"
+    				sh "gradle test"
     			}
     		}
     	)
