@@ -32,7 +32,7 @@ node (env.SLAVE) {
     }
     stage ('Packaging and Publishing results') {
         /*a)*/ sh 'tar xvf vulantsau_dsl_script.tar.gz'
-        /*b)*/ sh 'tar zvfc pipeline-${student}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile build/libs/'+JOB_NAME.Replace(env.SLAVE+'/',"")+'.jar'
+        /*b)*/ sh 'tar zvfc pipeline-${student}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile build/libs/'+JOB_NAME.replace(env.SLAVE+'/',"")+'.jar'
         /*c)*/ archiveArtifacts artifacts: 'pipeline-${student}-${BUILD_NUMBER}.tar.gz', allowEmptyArchive: false
         /*d)*/ nexusArtifactUploader artifacts: [[artifactId: 'task11ArtifactId', classifier: '', file: 'pipeline-'+env.student+'-${BUILD_NUMBER}.tar.gz' , type: 'tar.gz']], credentialsId: 'nexus_cred', groupId: 'task11GroupId', nexusUrl: '192.168.56.51:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'artifacts', version: '1.0'
     }
