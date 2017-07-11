@@ -5,6 +5,7 @@ node (env.SLAVE) {
 
 	env.PATH=env.PATH+":/opt/gradle/bin:/opt/groovy/bin"
 	env.ARTIFACT_SUFFIX="pipeline-atsuranau"
+	echo env.ARTIFACT_SUFFIX
 	env.ACTION="push"
 
 stage '\u2776 Preparation (Checking out)'
@@ -50,8 +51,8 @@ stage '\u277A Packing and Publishing'
 
 	sh 'tar -xzf atsuranau_dsl_script.tar.gz'
 	sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
-	sh 'tar -zcf ${env.ARTIFACT_SUFFIX}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
-	archiveArtifacts '${env.ARTIFACT_SUFFIX}-${BUILD_NUMBER}.tar.gz'
+	sh 'tar -zcf ${ARTIFACT_SUFFIX}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
+	archiveArtifacts '${ARTIFACT_SUFFIX}-${BUILD_NUMBER}.tar.gz'
 	sh 'groovy nexusUpload'
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
