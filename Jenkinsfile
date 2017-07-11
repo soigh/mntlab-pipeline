@@ -43,6 +43,10 @@ node('EPBYMINW2695') {
         }
     }
     stage ('Deployment') {
-        sh 'java -jar gradle-simple.jar '
+        sh ' RESULT = java -jar gradle-simple.jar '
+    }
+
+    stage ('Sending status') {
+        sh ' echo "SUCCESS" '
     }
 }
