@@ -31,7 +31,7 @@ node ('EPBYMINW2471') {
             echo ('Finished: Triggering job and fetching artefact after finishing')
     }
     stage('Packaging and Publishing results') {
-            sh ("tar -xzf vtarasiuk_dsl_script.tar.gz &&  cp vtarasiuk_dsl_script/jobs.groovy ./")
+            sh ("tar -xzf vtarasiuk_dsl_script.tar.gz")
             archiveArtifacts artifacts: 'build/libs/gradle-simple.jar, Jenkinsfile, jobs.groovy', onlyIfSuccessful: true
             sh ("ls -l")
             echo ('Finished: Packaging and Publishing results')
