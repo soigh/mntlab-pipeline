@@ -34,8 +34,8 @@ node (env.SLAVE) {
     		
     }
     stage ('Packaging and Publishing results') {
-    	sh "tar -xf ${student}_dsl_script.tar.gz"
-    	sh "tar -zcf pipeline-${student}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile -C build/libs/ gradle-simple.jar"
+    	sh "tar -xf asemirski_dsl_script.tar.gz"
+    	sh "tar -zcf pipeline-asemirski-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile -C build/libs/ gradle-simple.jar"
 
     }	
 }
