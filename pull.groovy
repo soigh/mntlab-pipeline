@@ -13,8 +13,8 @@ if (!options) {
 def ARTIFACT_NAME= options.a
 def PULLPUSH = options.p
 
-def cred = "jenkinsnexus:jenkins"
-def repo = "Artifact_storage2"
+def cred = "nexus-service-user:admin123"
+def repo = "project-releases"
 def way = "http://192.168.56.25:8081"
 
 if("$PULLPUSH"=="push"){
