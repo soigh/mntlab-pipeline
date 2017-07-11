@@ -40,7 +40,7 @@ node (env.SLAVE) {
     	sh "curl -v --user 'admin:admin123' --upload-file ./pipeline-asemirski-${BUILD_NUMBER}.tar.gz http://192.168.123.55/repository/artifact_storage_semirski/pipeline-asemirski-${BUILD_NUMBER}.tar.gz"
     }	
     stage ('Asking for manual approval') {
-    	input id: 'Manual',message: 'Are you sure want to deploy artifact?' ok: 'Yes'
+    	input id: 'Manual',message: 'Are you sure want to deploy artifact?', ok: 'Yes'
     }
 }
     
