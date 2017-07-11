@@ -1,4 +1,4 @@
-node('EPBYMINW2695') {
+node(env.SLAVE) {
     stage('Preparation') {
         git branch: 'adoropei', url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
     }
