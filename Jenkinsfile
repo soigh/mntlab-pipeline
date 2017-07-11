@@ -52,7 +52,6 @@ stage '\u277A Packing and Publishing'
 	sh 'tar -xzf atsuranau_dsl_script.tar.gz'
 	sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
 	sh 'tar -zcf ${ARTIFACT_SUFFIX}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
-	archiveArtifacts '${ARTIFACT_SUFFIX}-${BUILD_NUMBER}.tar.gz'
 	sh 'groovy nexusUpload'
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
