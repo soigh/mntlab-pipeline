@@ -36,7 +36,10 @@ step([$class: 'CopyArtifact',
   }
 
   stage ('Asking for manual approval') {
-        input 'Do you approve deployment?'
+  timeout(time:1, unit:'HOURS') {
+           input message:'Do you approve deployment?', ok: 'Yes'
+  }
+
   }
 
   stage ('Deployment') {
