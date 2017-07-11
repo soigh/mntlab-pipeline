@@ -28,7 +28,9 @@ echo 'nexus'
 archiveArtifacts 'pipeline-hpashuto-"${BUILD_NUMBER}".tar.gz'
 }
 stage('Asking for manual approval') {
+timeout(10) {
 input id: 'Deployapprove', message: 'DEPLOY?', ok: 'deploy'
+}
 }
 stage('Deployment') {
 echo 'SUCCESS'
