@@ -22,4 +22,9 @@ node('EPBYMINW2695') {
                projectName: 'MNTLAB-adoropei-child1-build-job',
                filter: 'adoropei_dsl_script.tar.gz']);
     }
+    stage('Packaging and Publishing') {
+        sh 'tar xvf adoropei_dsl_script.tar.gz'
+        sh 'cp build/libs/Pipeline.jar gradle-simple.jar'
+        sh 'tar -czf pipeline-adoropei-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
+    }
 }
