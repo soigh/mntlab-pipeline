@@ -25,6 +25,7 @@ node ('EPBYMINW2471') {
     stage('Triggering job and fetching artefact after finishing') {
         build job: 'EPBYMINW2471/MNTLAB-vtarasiuk-child1-build-job',
         parameters: [string(name: 'BRANCH_NAME', value: 'vtarasiuk')]
+        archiveArtifacts artifacts: 'vtarasiuk_dsl_script.tar.gz', onlyIfSuccessful: true
             echo ('Finished: Triggering job and fetching artefact after finishing')
     }
     stage('Packaging and Publishing results') {
