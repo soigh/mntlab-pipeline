@@ -29,7 +29,7 @@ step([$class: 'CopyArtifact',
 
   stage ('Packaging and Publishing results') {
 
-       sh '''tar -xf jobs.groovy ${student}_dsl_script.tar.gz >
+       sh '''tar -xf jobs.groovy ${student}_dsl_script.tar.gz
              tar -czf pipeline-${student}-'BUILD_NUMBER'.tar.gz jobs.groovy Jenkinsfile -C build/libs gradle-simple.jar'''
   }
 }
