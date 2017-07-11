@@ -12,10 +12,11 @@ import java.net.URL
 
 node {
 stage '\u2776 Stage 1'
-echo "\u2600 BUILD_URL=${env.BUILD_URL}"
+git url: "https://github.com/MNT-Lab/mntlab-pipeline.git", branch: 'atsuranau'
+
+echo "\u2600 Repo downloaded"
  
-def workspace = pwd()
-echo "\u2600 workspace=${workspace}"
+
  
 stage '\u2777 Stage 2'
 
