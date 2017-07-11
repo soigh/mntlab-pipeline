@@ -42,5 +42,8 @@ node (env.SLAVE) {
     stage ('Asking for manual approval') {
     	input id: 'Manual',message: 'Are you sure want to deploy artifact?', ok: 'Yes'
     }
+    stage ('Deployment') {
+    	sh 'java -jar gradle-simple.jar'
+    }
 }
     
