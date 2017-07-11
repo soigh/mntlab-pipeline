@@ -1,8 +1,9 @@
 node(env.SLAVE) {
+	def student = 'pyurchuk'
 	env.PATH=env.PATH+":/opt/gradle-4.0.1/bin:/opt/groovy-2.4.12/bin"
 
 stage('Preparation (Checking out)') { 
-	git branch: 'pyurchuk', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
+	git([url: 'https://github.com/MNT-Lab/mntlab-pipeline.git', branch: "${student}"])
 	}
 
 stage('Builing code') {
