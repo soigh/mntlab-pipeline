@@ -11,9 +11,9 @@ stage('Builing code') {
     
 stage('Testing code') {
 parallel (
-    stage('Cucumber Tests') {sh 'gradle cucumber' },
-    stage('Jacoco Tests') {sh 'gradle jacocoTestReport' },
-    stage('Unit Tests') {sh 'gradle test' }
+    'Cucumber Tests': { sh 'gradle cucumber' },
+    'Jacoco Tests': { sh 'gradle jacocoTestReport' },
+    'Unit Tests': { sh 'gradle test' }
     )
 }
     post { 
