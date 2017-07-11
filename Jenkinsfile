@@ -34,7 +34,7 @@ node(env.SLAVE) {
 		sh 'tar -xf mdemenkova_dsl_script.tar.gz'
 		sh 'tar -czf mdemenkova-"${BUILD_NUMBER}".tar.gz jobs.groovy Jenkinsfile -C build/libs/ gradle-simple.jar'
 		//nexusArtifactUploader artifacts: [[artifactId: "${BUILD_NUMBER}", classifier: 'tar.gz', file: '/target/pipeline-mdemenkova-"${BUILD_NUMBER}".tar.gz', type: "${BUILD_NUMBER}"]], credentialsId: 'admin', groupId: 'groupid', nexusUrl: '192.168.56.51:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'artifact', version: 'release'
-		sh 'groovy upload_download.groovy upload pipeline-mdemenkova-${BUILD_NUMBER}.tar.gz'
+		sh 'groovy upload_download.groovy upload mdemenkova-${BUILD_NUMBER}.tar.gz'
 	}
 	stage ('Asking for manual approval'){
 		input 'Deploy or Abort?'
