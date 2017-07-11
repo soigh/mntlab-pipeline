@@ -33,7 +33,7 @@ node ('EPBYMINW2471') {
     stage('Packaging and Publishing results') {
             sh ("tar -xzf vtarasiuk_dsl_script.tar.gz")
             archiveArtifacts artifacts: 'build/libs/gradle-simple.jar, Jenkinsfile, jobs.groovy', onlyIfSuccessful: true
-            sh ("ls -l /build")
+            sh ("ls -l build/")
             echo ('Finished: Packaging and Publishing results')
     }
     stage('Asking for manual approval') {
