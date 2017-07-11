@@ -3,7 +3,7 @@ node {
 		checkout([$class: 'GitSCM', branches: [[name: '*/asemirski']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/MNT-Lab/mntlab-pipeline.git']]])
 	}
         stage('Gradle Build') {
-           sh "gardle build"
+           sh "gradle build"
         } 
 }
     
