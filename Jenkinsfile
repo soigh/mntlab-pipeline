@@ -34,11 +34,10 @@ stage ('Testing code'){
 
 stage('Triggering job and fetching artefact after finishing') {
 	build job: 'MNTLAB-akarzhou-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'akarzhou')]
-	}
 	step ([$class: 'CopyArtifact',
 	        projectName: 'MNTLAB-akarzhou-child1-build-job',
-        	filter: './akarzhou_dsl_script.tar.gz']);
-
+        	filter: 'akarzhou_dsl_script.tar.gz']);
+}
 stage('Packaging and Publishing results') {
 echo 'Success'	
 }
