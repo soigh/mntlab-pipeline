@@ -1,26 +1,26 @@
 node(env.SLAVE) {
 stage('Preparation (Checking out)') {
-    // some block
+git branch: 'hpashuto', url: 'https://github.com/MNT-Lab/mntlab-pipeline.git'
 }
 stage('Building code') {
-    // some block
+echo 'SUCCESS'
 }
 stage('Testing code') {
-    // some block
+echo 'SUCCESS'
 }
 stage('Triggering job and fetching artefact after finishing') {
-    // some block
+echo 'SUCCESS'
 }
 stage('Packaging and Publishing results') {
-    // some block
+echo 'SUCCESS'
 }
 stage('Asking for manual approval') {
-    // some block
+echo 'SUCCESS'
 }
 stage('Deployment') {
-    // some block
+echo 'SUCCESS'
 }
 stage('Sending status') {
-    // some block
+echo 'SUCCESS'
 }
 }
