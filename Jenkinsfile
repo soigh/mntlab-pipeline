@@ -15,7 +15,7 @@ node(env.SLAVE){
       parallel (
         Branch1: { sh "gradle cucumber"},
         Branch2: { sh "gradle jacocoTestReport"},
-        Branch3: { sh "gradle test"}          
+        Branch3: { sh "gradle test"}
       )
     }
 
@@ -41,6 +41,7 @@ node(env.SLAVE){
     }
 
     stage('Sending status') {
-        echo "AUTOMATED DEPLOYMENT is SUCCESS"
+        echo "SUCCESS"
+        echo "Application successfully deployed"
     }
 }
