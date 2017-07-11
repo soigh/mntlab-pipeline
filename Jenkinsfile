@@ -50,8 +50,9 @@ stage '\u277A Packing and Publishing'
 
 	sh 'tar -xzf atsuranau_dsl_script.tar.gz'
 	sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
-	sh 'tar -zcf pipeline-atsuranau-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
-	
+	sh 'tar -zcf ${env.ARTIFACT_SUFFIX}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
+	archiveArtifacts '${env.ARTIFACT_SUFFIX}-${BUILD_NUMBER}.tar.gz'
+	sh 'groovy nexusUpload
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
      	echo "\u2600 New artifact was published"
