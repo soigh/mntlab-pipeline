@@ -43,7 +43,8 @@ node (env.SLAVE) {
     }
     stage('Deployment') {
         //sh: 'java -jar build/libs/${JOB_NAME}.jar'
-        if(!(sh(script: 'java -jar build/libs/${JOB_NAME}.jar', returnStdout: true)).contains("Hello World!")) {
+        sh 'chmod +x '
+        if(!(sh(script: 'java -jar build/libs/'+JOB_NAME.replace(env.SLAVE+'/',"")+'.jar', returnStdout: true)).contains("Hello World!")) {
             currentBuild.result = 'FAILURE'
         }
     }
