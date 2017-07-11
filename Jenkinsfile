@@ -27,5 +27,9 @@ node('EPBYMINW2695') {
         sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
         sh 'tar -czf pipeline-adoropei-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
         archiveArtifacts 'pipeline-adoropei-${BUILD_NUMBER}.tar.gz'
+        dir('scripts') {
+            git branch: 'adoropei', url: 'https://github.com/MNT-Lab/groovy-scripts.git'
+        }
+        sh '/home/student/Downloads/groovy-2.4.12/bin/groovy scripts/push_pull.groovy -a push -f pipeline-adoropei-${BUILD_NUMBER}.tar.gz'
     }
 }
