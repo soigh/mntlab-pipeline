@@ -27,4 +27,9 @@ step([$class: 'CopyArtifact',
       projectName: "EPBYMINW1969/MNTLAB-${student}-child1-build-job" ])
       }
 
+  stage ('Packaging and Publishing results') {
+
+          sh "tar -xf jobs.groovy ${student}_dsl_script.tar.gz |
+          tar -czf pipeline-${student}-'BUILD_NUMBER'.tar.gz jobs.groovy Jenkinsfile -C build/libs gradle-simple.jar"
+  }
 }
