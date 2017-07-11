@@ -31,10 +31,10 @@ step(
     [$class: 'CopyArtifact',
     filter: "${student}_dsl_script.tar.gz",
     projectName: "EPBYMINW6405/MNTLAB-${student}-child1-build-job" ])
-}
 
 catch (none) {
     echo "There is no any " " + name + "" match yurchuk_dsl_script.tar.gz"
     writeFile file: "${archiveName}"
     }
+}
 }
