@@ -32,6 +32,9 @@ node (env.SLAVE) {
 	          projectName: 'MNTLAB-asemirski-child1-build-job',
         	  filter: 'asemirski_dsl_script.tar.gz']) 
     		
-    	}
+    }
+    stage ('Packaging and Publishing results') {
+
+    }	
 }
     
