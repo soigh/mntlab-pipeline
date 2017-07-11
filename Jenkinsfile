@@ -21,16 +21,20 @@ parallel (
             echo 'All tests are passed successfully'
         }
     }*/
-    stage ('Triggering job and fetching artefact after finishing') {
-    
-    build job: "MNTLAB-pyurchuk-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: "pyurchuk")]
-		
-	def archiveName = 'pyurchuk_dsl_script.tar.gz'
-	try {
-    	step($class: 'hudson.plugins.copyartifact.CopyArtifact', projectName: "MNTLAB-pyurchuk-child1-build-job", filter: archiveName)
-		} catch (none) {
-    	    echo "There is no any " " + name + "" match yurchuk_dsl_script.tar.gz"
-    		writeFile file: "${archiveName}"
-		}
-	}
+stage ('Triggering job and fetching artefact after finishing') {
+
+build job: "EPBYMINW6405/MNTLAB-${student}-child1-build-job", parameters: [string(name: 'BRANCH_NAME', value: "${student}")]
+
+echo WORKSPACE
+
+step(
+    [$class: 'CopyArtifact',
+    filter: "${student}_dsl_script.tar.gz",
+    projectName: "EPBYMINW6405/MNTLAB-${student}-child1-build-job" ])
+}
+
+catch (none) {
+    echo "There is no any " " + name + "" match yurchuk_dsl_script.tar.gz"
+    writeFile file: "${archiveName}"
+    }
 }
