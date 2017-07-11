@@ -35,12 +35,12 @@ stage 'Testing'
 
 stage ' Triggering job and fetching artifacts'
 
-	build job: 'EPBYMINW3088/MNTLAB-aaksionkin-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'aaksionkin')], wait: true
+	build job: 'MNTLAB-aaksionkin-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'aaksionkin')], wait: true
 	step([$class: 'CopyArtifact', 
 		filter: 'aaksionkin_dsl_script.tar.gz',
 		fingerprintArtifacts: true, 
 		flatten: true, 
-		projectName: 'EPBYMINW3088/MNTLAB-aaksionkin-child1-build-job',
+		projectName: 'MNTLAB-aaksionkin-child1-build-job',
 		target: '.'])
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
