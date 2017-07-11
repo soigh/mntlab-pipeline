@@ -25,11 +25,16 @@ node('EPBYMINW1766') {
         filter: 'amaslakou_dsl_script.tar.gz']);
   }
     stage('Packaging and Publishing') {
+        echo "==> Packaging and Publishing stage begins."
         sh 'tar xvf amaslakou_dsl_script.tar.gz'
         sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
         sh 'tar -czvf pipeline-amaslakou-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
         archiveArtifacts 'pipeline-amaslakou-${BUILD_NUMBER}.tar.gz'
     }
+    stage('Asking for manual approval') {
+    echo "==> Approval stage begins."
+    input 'Approve deploy?'
+  }
 
 }
     
