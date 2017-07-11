@@ -32,10 +32,18 @@ step([$class: 'CopyArtifact',
        sh "tar -xf ${student}_dsl_script.tar.gz jobs.groovy"
        sh "tar -czf pipeline-${student}-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile -C build/libs gradle-simple.jar"
        archiveArtifacts 'pipeline-${student}-${BUILD_NUMBER}.tar.gz'
-       sh "groovy "
+       sh "groovy pull-push.groovy -p push -a pipeline-${student}-${BUILD_NUMBER}.tar.gz"
   }
 
   stage ('Asking for manual approval') {
-        input 'Approve deploy step'
+        input 'Do you approve deployment?'
+  }
+
+  stage ('Deployment') {
+     sh "java -jar build/libs/gradle-simple.jar"
+  }
+
+  stage ('Sending status') {
+         echo "ALL STEPS SUCCESS"
   }
 }
