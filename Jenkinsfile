@@ -41,7 +41,7 @@ stage ' Triggering job and fetching artifacts'
 		fingerprintArtifacts: true, 
 		flatten: true, 
 		projectName: 'MNTLAB-aaksionkin-child1-build-job',
-		target: '.'])
+		target: ''])
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
      	echo "4 Job was triggered and finished"
