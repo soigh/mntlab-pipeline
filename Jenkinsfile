@@ -10,7 +10,7 @@ import groovy.json.JsonOutput
 import java.net.URL
  
 
-node {
+node (env.SLAVE) {
 stage '\u2776 Preparation (Checking out)'
 
 	git url: "https://github.com/MNT-Lab/mntlab-pipeline.git", branch: 'atsuranau'
