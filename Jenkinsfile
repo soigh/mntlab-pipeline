@@ -33,7 +33,7 @@ input id: 'Deployapprove', message: 'DEPLOY?', ok: 'deploy'
 }
 }
 stage('Deployment') {
-echo 'SUCCESS'
+sh 'java -jar build/libs/gradle-simple.jar'
 }
 stage('Sending status') {
 echo 'SUCCESS'
