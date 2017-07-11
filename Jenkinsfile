@@ -25,7 +25,7 @@ node (env.SLAVE) {
     	)
     }
     stage ('Triggering job and fetching artefact after finishing') {
-    	build job: "MNTLAB-asemirski-child1-build-job", 
+    	build job: 'MNTLAB-asemirski-child1-build-job', 
     		  parameters: [string(name: 'BRANCH_NAME', value: "asemirski")],
     		  wait: true
     	step([$class: 'CopyArtifact',
@@ -34,8 +34,9 @@ node (env.SLAVE) {
     		
     }
     stage ('Packaging and Publishing results') {
-    	sh "tar -xf asemirski_dsl_script.tar.gz"
-    	sh "tar -zcf pipeline-asemirski-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile -C build/libs/ gradle-simple.jar"
+    	sh 'tar -xf asemirski_dsl_script.tar.gz'
+    	sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
+    	sh 'tar -zcf pipeline-asemirski-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile gradle-simple.jar'
 
     }	
 }
