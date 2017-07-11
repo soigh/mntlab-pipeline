@@ -1,15 +1,6 @@
 #!/usr/bin/env groovy
  
 
- 
-import hudson.model.*
-import hudson.EnvVars
-import groovy.json.JsonSlurperClassic
-import groovy.json.JsonBuilder
-import groovy.json.JsonOutput
-import java.net.URL
- 
-
 node (env.SLAVE) {
 
 	env.PATH=env.PATH+":/opt/gradle/bin"
@@ -27,6 +18,18 @@ stage '\u2777 Building'
 	wrap([$class: 'TimestamperBuildWrapper']) {
      	echo "\u2600 Build completed"
    }
+
+stage '\u2778 Testing'
+
+	parallel (
+		'Cucumber Tests': {sh 'gradle cucumber' },
+                'Jacoco Tests': {sh 'gradle jacocoTestReport' },
+                'Unit Tests': {sh 'gradle test' }
+		)
+	wrap([$class: 'TimestamperBuildWrapper']) {
+     	echo "\u2600 Testing completed"
+   }
+
 
 } // node
 
