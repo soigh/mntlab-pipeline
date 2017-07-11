@@ -1,7 +1,5 @@
-#!groovy
-
 node(env.SLAVE) {
-	env.PATH=env.PATH+":/opt/gradle-4.0/bin"
+	env.PATH=env.PATH+":/home/student/Downloads/groovy-2.5.0-beta-1/bin"
 
 stage('Preparation (Checking out)') { 
 		git branch: 'pyurchuk', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
