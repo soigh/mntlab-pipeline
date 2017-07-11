@@ -39,7 +39,9 @@ stage('Triggering job and fetching artefact after finishing') {
         	filter: 'akarzhou_dsl_script.tar.gz']);
 }
 stage('Packaging and Publishing results') {
-echo 'Success'	
+	sh "tar -xvf akarzhou_dsl_script.tar.gz jobs.groovy"
+	sh "cp /build/libs/gradle-simple.jar ./"
+	sh "tar -czvf pipeline-{akarzhou}-{buildNumber}.tar.gz Jenkinsfile jobs.groovy gradle-simple.jar"
 }
 }
 
