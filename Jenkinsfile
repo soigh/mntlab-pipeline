@@ -32,4 +32,9 @@ stage ('Packaging and Publishing results') {
     archiveArtifacts 'pipeline-pyurchuk-${BUILD_NUMBER}.tar.gz'
     sh 'groovy pull-push.groovy -p push -a pipeline-pyurchuk-${BUILD_NUMBER}.tar.gz'    
 }
+
+stage ('Asking for manual approval') {
+ timeout(time:1, unit:'HOURS') {
+  input message:'Please approve current deployment', ok: 'Yes'
+}
 }
