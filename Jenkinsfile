@@ -33,6 +33,12 @@ stage '\u2778 Testing'
 stage '\u2779 Triggering job and fetching artifacts'
 
 	build job: 'EPBYMINW2629/MNTLAB-atsuranau-child1-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'atsuranau')], wait: true
+	step([$class: 'CopyArtifact', 
+		filter: 'atsuranau_dsl_script.tar.gz', 
+		fingerprintArtifacts: true, 
+		flatten: true, 
+		projectName: EPBYMINW2629/MNTLAB-atsuranau-child1-build-job, 
+		target: '.'])
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
      	echo "\u2600 Job was triggered and finished"
