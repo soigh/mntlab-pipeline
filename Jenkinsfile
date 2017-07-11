@@ -1,5 +1,6 @@
 node(env.SLAVE) {
 	def student = 'pyurchuk'
+	checkout([$class: 'GitSCM', branches: [[name: '*/pyurchuk']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/MNT-Lab/mntlab-pipeline.git']]])
 	env.PATH=env.PATH+":/opt/gradle-4.0.1/bin:/opt/groovy-2.4.12/bin"
 
 stage('Preparation (Checking out)') { 
