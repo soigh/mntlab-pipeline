@@ -3,7 +3,9 @@
 
 node (env.SLAVE) {
 
-	env.PATH=env.PATH+":/opt/gradle/bin"
+	env.PATH=env.PATH+":/opt/gradle/bin:/opt/groovy/bin"
+	env.ARTIFACT_SUFFIX="pipeline-atsuranau"
+	env.ACTION="push"
 
 stage '\u2776 Preparation (Checking out)'
 	
@@ -44,7 +46,7 @@ stage '\u2779 Triggering job and fetching artifacts'
      	echo "\u2600 Job was triggered and finished"
    }
 
-stage '\u2780 Packing and Publishing'
+stage '\u277A Packing and Publishing'
 
 	sh 'tar -xzf atsuranau_dsl_script.tar.gz'
 	sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
@@ -52,7 +54,7 @@ stage '\u2780 Packing and Publishing'
 	
 
 	wrap([$class: 'TimestamperBuildWrapper']) {
-     	echo "\u2600 Job was triggered and finished"
+     	echo "\u2600 New artifact was published"
    }
 
 } // node
