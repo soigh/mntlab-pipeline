@@ -1,6 +1,7 @@
 node('EPBYMINW1374') {
     stage('check'){
-	git branch: 'dsilnyagin', credentialsId: 'amazurenko4tests-passwd', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
+	//git branch: 'dsilnyagin', credentialsId: 'amazurenko4tests-passwd', url: 'https://github.com/MNT-Lab/mntlab-pipeline'
+	checkout([$class: 'GitSCM', branches: [[name: '*/dsilnyagin']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/MNT-Lab/mntlab-pipeline.git']]])
 	fileExists 'build.gradle'
 	sh "mkdir -p ./artifacts/"
     }
