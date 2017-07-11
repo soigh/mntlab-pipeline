@@ -6,7 +6,11 @@ stage('Building code') {
 sh '/opt/gradle/gradle-4.0/bin/gradle build'
 }
 stage('Testing code') {
-echo 'SUCCESS'
+parallel (
+'Unit Tests': {sh '/opt/gradle/gradle-4.0/bin/gradle test'}, 
+'Jacoco Tests': {sh '/opt/gradle/gradle-4.0/bin/gradle jacocoTestReport'}, 
+'Cucumber Tests': {sh '/opt/gradle/gradle-4.0/bin/gradle cucumber'},
+    )
 }
 stage('Triggering job and fetching artefact after finishing') {
 echo 'SUCCESS'
