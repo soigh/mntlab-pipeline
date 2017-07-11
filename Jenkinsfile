@@ -7,18 +7,18 @@ node ('EPBYMINW2471') {
         echo ('Finished: Preparation (Checking out)')
     }
     stage('Building code') {
-        shell ("gradle build")
+        sh ("gradle build")
         echo ('Finished: Building code')
     }
     stage('Testing code') {
         parallel cucumber: {
-            shell ("gradle cucumber")
+            sh ("gradle cucumber")
         },
         jacoco: {
-            shell ("gradle jacocoTestReport")
+            sh ("gradle jacocoTestReport")
         },
         gradle: {
-            shell ("gradle test")
+            sh ("gradle test")
         }
         echo ('Finished: Testing code')
     }
