@@ -58,5 +58,16 @@ stage '\u277A Packing and Publishing'
      	echo "\u2600 New artifact was published"
    }
 
+stage '\u277B Manual approval'
+
+	timeout(time: 10, unit: 'MINUTES') {
+		input  message: 'Deploy this build?', ok: 'Deploy'
+       	}
+
+	wrap([$class: 'TimestamperBuildWrapper']) {
+     	echo "\u2600 Approved"
+   }
+
+
 } // node
 
