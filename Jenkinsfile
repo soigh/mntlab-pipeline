@@ -22,6 +22,7 @@ node('EPBYMINW2695') {
                projectName: 'MNTLAB-adoropei-child1-build-job',
                filter: 'adoropei_dsl_script.tar.gz']);
     }
+
     stage('Packaging and Publishing') {
         sh 'tar xvf adoropei_dsl_script.tar.gz'
         sh 'cp build/libs/mntlab-ci-pipeline.jar gradle-simple.jar'
@@ -31,5 +32,14 @@ node('EPBYMINW2695') {
             git branch: 'adoropei', url: 'https://github.com/MNT-Lab/groovy-scripts.git'
         }
         sh '/home/student/Downloads/groovy-2.4.12/bin/groovy scripts/push_pull.groovy -a push -f pipeline-adoropei-${BUILD_NUMBER}.tar.gz'
+    }
+
+
+    stage('Asking for manual approval') {
+        timeout(time: 10, unit: 'MINUTES') {
+            node {
+                input id: 'Approve', message: 'Deploy this build?', ok: 'Deploy'
+            }
+        }
     }
 }
