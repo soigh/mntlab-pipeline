@@ -30,7 +30,7 @@ node (env.SLAVE) {
     		  wait: true
     	step([$class: 'CopyArtifact',
 	          projectName: 'MNTLAB-asemirski-child1-build-job',
-        	  filter: 'asemriski_dsl_script.tar.gz']) 
+        	  filter: 'asemirski_dsl_script.tar.gz']) 
     		
     	}
 }
