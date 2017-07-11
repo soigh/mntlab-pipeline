@@ -1,4 +1,4 @@
-node {
+node (env.SLAVE) {
     env.student='vulantsau'
     //customWorkspace '/opt/jenkins/master/workspace/customWorkspace'
     stage('Preparation(Checking out)') {
