@@ -32,9 +32,18 @@ node('EPBYMINW1766') {
         archiveArtifacts 'pipeline-amaslakou-${BUILD_NUMBER}.tar.gz'
     }
     stage('Asking for manual approval') {
-    echo "==> Approval stage begins."
-    input 'Approve deploy?'
+        echo "==> Approval stage begins."
+        input 'Approve deploy?'
   }
+    stage('Deployment') {
+        echo "==> Deployment stage begins."
+        sh "java -jar build/libs/gradle-simple.jar"
+    }
+
+    stage('Sending status') {
+    echo "===> SUCCESS!"
+  }
+    
 
 }
     
