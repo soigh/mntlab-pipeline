@@ -27,7 +27,7 @@ node(env.SLAVE) {
   }
   stage('Asking for manual approval') {
     timeout(time: 10, unit: 'MINUTES') {
-      input id: 'Manual approve', message: "Are you sure that pipeline-${student}-${BUILD_NUMBER}.tar.gz artifact should be deployed", ok: 'Deploy'
+      input id: 'Manual approve', message: "Are you sure that pipeline-${student}-${BUILD_NUMBER}.tar.gz artifact should be deployed?", ok: 'Deploy'
     }
   }
   stage('Deployment') {
