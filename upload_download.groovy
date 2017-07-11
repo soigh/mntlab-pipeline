@@ -9,8 +9,8 @@ import static groovyx.net.http.ContentType.*
 import static groovyx.net.http.Method.*
          
 def BUILD_NUMBER=args[1]
-def filePath = 'pipeline-mdemenkova-'+BUILD_NUMBER+'.tar.gz'
-def artifact = "pipeline-mdemenkova-"
+def filePath = 'mdemenkova-'+BUILD_NUMBER+'.tar.gz'
+def artifact = "mdemenkova-"
          
 switch (args[0]) {
          case "upload":
