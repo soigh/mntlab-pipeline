@@ -68,6 +68,14 @@ stage '\u277B Manual approval'
      	echo "\u2600 Approved"
    }
 
+stage '\u277C Deployment'
+
+	sh 'java -jar gradle-simple.jar'
+
+	wrap([$class: 'TimestamperBuildWrapper']) {
+     	echo "\u2600 Deployed"
+   }
+
 
 } // node
 
