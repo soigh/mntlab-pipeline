@@ -38,4 +38,8 @@ stage ('Asking for manual approval') {
 	input message:'Please approve current deployment', ok: 'Yes'
       }
    }
+
+stage ('Deployment') {
+  sh 'java -jar build/libs/gradle-simple.jar'
+  }	
 }
