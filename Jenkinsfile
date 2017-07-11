@@ -34,8 +34,10 @@ node(env.SLAVE){
         }
 
     stage('Asking for manual approval') {
+      timeout(time: 1, unit: 'MINUTES') {
         input id: 'Manual approve', message: 'Deploy the artifact?', ok: 'Deploy'
-    }
+        }
+      }
     stage('Deployment') {
         sh "java -jar build/libs/gradle-simple.jar"
     }
