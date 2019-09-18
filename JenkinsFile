@@ -1,4 +1,7 @@
 #!Groovy
+
+import java.io.File;
+
 node {
   stage ('Prepare') {
     git url: 'https://github.com/soigh/mntlab-pipeline.git', branch: 'osamorukova'
