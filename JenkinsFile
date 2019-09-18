@@ -1,0 +1,13 @@
+#!Groovy
+node {
+  stage ('1') {
+  git url: 'https://github.com/soigh/mntlab-pipeline.git', branch: 'osamorukova'
+  }
+  
+  stage ('2') {
+  sh '/opt/gradle/bin/gradle build'
+  }
+  
+  stage ('3') {
+  }
+}
