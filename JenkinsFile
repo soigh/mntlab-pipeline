@@ -18,19 +18,21 @@ node {
   }
   
   stage ('Triggering job and fetching artefact after finishing') {
-  build job: 'MNTLAB-osamorukova-child4-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'osamorukova')], wait: true
+    build job: 'MNTLAB-osamorukova-child4-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'osamorukova')], wait: true
   }
   
   stage ('Packaging and Publishing results') {
   }
   
   stage ('Asking for manual approval') {
+    input 'Deploy to prod?'
   }
   
   stage ('Deployment') {
   }
   
   stage ('Sending status') {
+    sh 'echo SUCCESS'
   }
   
 }
