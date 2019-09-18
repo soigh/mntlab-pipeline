@@ -19,9 +19,9 @@ node {
   
   stage ('Triggering job and fetching artefact after finishing') {
     build job: 'MNTLAB-osamorukova-child4-build-job', parameters: [string(name: 'BRANCH_NAME', value: 'osamorukova')], wait: true
-    step {
-      copyArtifacts filter: 'osamorukova_dsl_script.tar.gz', projectName: 'MNTLAB-osamorukova-child4-build-job')
-    }
+    step ([$class: 'CopyArtifact',
+      projectName: 'webapp_build',
+      filter: 'target/orders.war']);
   }
   
   stage ('Packaging and Publishing results') {
