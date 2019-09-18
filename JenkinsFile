@@ -1,15 +1,15 @@
 #!Groovy
 
 node {
-  stage ('Prepare') {
+  stage ('Preparation (Checking out)') {
     git url: 'https://github.com/soigh/mntlab-pipeline.git', branch: 'osamorukova'
   }
   
-  stage ('Build') {
+  stage ('Building code') {
     sh '/opt/gradle/bin/gradle build'
   }
   
-  stage ('Test') {
+  stage ('Testing code') {
     parallel (
     'Unit Test': {sh '/opt/gradle/bin/gradle test'},
     Jacoco: {sh '/opt/gradle/bin/gradle jacocoTestReport'},
@@ -17,7 +17,19 @@ node {
     )
   }
   
-  stage ('Deploy') {
+  stage ('Triggering job and fetching artefact after finishing') {
+  }
+  
+  stage ('Packaging and Publishing results') {
+  }
+  
+  stage ('Asking for manual approval') {
+  }
+  
+  stage ('Deployment') {
+  }
+  
+  stage ('Sending status') {
   }
   
 }
