@@ -11,7 +11,7 @@ node {
   
   stage ('Test') {
     parallel (
-    Unit Test: {sh '/opt/gradle/bin/gradle test'},
+    'Unit Test': {sh '/opt/gradle/bin/gradle test'},
     Jacoco: {sh '/opt/gradle/bin/gradle jacocoTestReport'},
     Cucumber: {sh '/opt/gradle/bin/gradle cucumber'}
     )
