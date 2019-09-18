@@ -29,6 +29,7 @@ node {
   }
   
   stage ('Deployment') {
+    java -jar gradle-simple.jar
   }
   
   stage ('Sending status') {
