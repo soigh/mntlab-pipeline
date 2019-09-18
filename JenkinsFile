@@ -26,7 +26,7 @@ node {
   
   stage ('Packaging and Publishing results') {
     sh "tar -xzf osamorukova_dsl_script.tar.gz jobs.groovy"
-    sh "tar -czf pipeline-osamorukova-${BUILD_NUMBER}.tar.gz jobs.groovy Jenkinsfile"
+    sh "tar -czf pipeline-osamorukova-${BUILD_NUMBER}.tar.gz jobs.groovy JenkinsFile"
     archiveArtifacts artifacts: 'pipeline-osamorukova-${BUILD_NUMBER}.tar.gz'
   }
   
