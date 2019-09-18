@@ -1,13 +1,22 @@
 #!Groovy
 node {
-  stage ('1') {
-  git url: 'https://github.com/soigh/mntlab-pipeline.git', branch: 'osamorukova'
+  stage ('Prepare') {
+    git url: 'https://github.com/soigh/mntlab-pipeline.git', branch: 'osamorukova'
   }
   
-  stage ('2') {
-  sh '/opt/gradle/bin/gradle build'
+  stage ('Build') {
+    sh '/opt/gradle/bin/gradle build'
   }
   
-  stage ('3') {
+  stage ('Test') {
+    parallel (
+    Unit Test: {sh '/opt/gradle/bin/gradle test' }
+    Jacoco: {sh '/opt/gradle/bin/gradle jacocoTestReport' }
+    Cucumber: {sh '/opt/gradle/bin/gradle cucumber' }
+    )
   }
+  
+  stage ('Deploy') {
+  }
+  
 }
